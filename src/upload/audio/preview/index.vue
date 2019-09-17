@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import request from '@/utils/request'
 export default {
   name: 'UploadPreview',
   props: {
@@ -82,7 +81,7 @@ export default {
           resolve('')
         })
       }
-      return request({
+      return this.request({
         methods: 'get',
         url: lrcURL,
         withCredentials: false

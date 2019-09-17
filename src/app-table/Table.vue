@@ -21,14 +21,40 @@
           <column-cell :column="column" :record="scope.row" />
         </template>
       </el-table-column>
-      <!-- @slot 列扩展插槽 -->
+      <!-- @slot 列扩展插槽, 配合actions： preview、update、delete、confirm，对应配置项为 { url: 'url', method, 'id', disabled: () => {} } -->
       <slot name="column" />
       <el-table-column label="操作" v-if="showOptions">
         <template slot-scope="scope">
-          <el-link type="primary" v-if="actions['preview']" @click="previewHandler(scope.row)">查看</el-link>
-          <el-link type="primary" v-if="actions['update']" @click="updateHandler(scope.row)">编辑</el-link>
-          <el-link type="primary" v-if="actions['delete']" @click="deleteHandler(scope.row)">删除</el-link>
-          <el-link type="primary" v-if="actions['confirm']" @click="confirmHandler(scope.row)">{{actions.confirm.text}}</el-link>
+          <el-link
+            type="primary"
+            v-if="actions['preview']"
+            @click="previewHandler(scope.row)"
+          >
+            查看
+          </el-link>
+          <el-link
+            type="primary"
+            v-if="actions['update']"
+            @click="updateHandler(scope.row)"
+          >
+            编辑
+          </el-link>
+          <el-link
+            type="primary"
+            v-if="actions['delete']"
+            :disabled="actions.delete.disabled ? actions.confirm.disabled(scope.row) : false"
+            @click="deleteHandler(scope.row)"
+          >
+            删除
+          </el-link>
+          <el-link
+            type="primary"
+            v-if="actions['confirm']"
+            :disabled="actions.confirm.disabled ? actions.confirm.disabled(scope.row) : false"
+            @click="confirmHandler(scope.row)"
+          >
+            {{actions.confirm.text}}
+          </el-link>
           <!-- @slot 列操作项扩展插槽 -->
           <slot name="options" :row="scope.row" />
         </template>

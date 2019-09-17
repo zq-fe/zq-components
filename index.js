@@ -5,7 +5,6 @@ import AppForm from './src/app-form'
 import AppTable from './src/app-table'
 import AppFormItem from './src/app-form-item'
 
-
 export default {
     AppForm,
     AppTable,

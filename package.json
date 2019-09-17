@@ -1,6 +1,6 @@
 {
   "name": "zq-components",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "table and form components for admin platform",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,6 @@
     "axios": "0.18.1",
     "element-ui": "^2.9.1",
     "vue": "2.6.10",
-    "vue-router": "3.0.6",
     "vuex": "^3.1.1",
     "md5": "^2.2.1"
   },
