@@ -1,0 +1,129 @@
+### Form 组件示例
+## 文本类型
+```vue
+<template>
+  <el-form>
+    <app-form-item :field="field" v-model="fieldValue" />
+  </el-form> 
+</template>
+<script>
+  import '../../utils/global-comps';
+  export default {
+    name: 'AppFormItemText',
+    data() {
+      return {
+        field: {
+          label: '文本',
+          type: 'text'
+        },
+        fieldValue: 1 
+      }
+    }
+  }
+</script>
+```
+## 文本域类型
+```vue
+<template>
+  <el-form>
+    <app-form-item :field="field" v-model="fieldValue" />
+  </el-form> 
+</template>
+<script>
+  import '../../utils/global-comps';
+  export default {
+    name: 'AppFormItemArea',
+    data() {
+      return {
+        field: {
+          label: '文本域',
+          type: 'textarea'
+        },
+        fieldValue: 1
+      }
+    }
+  }
+</script>
+```
+## 文本域类型
+```vue
+<template>
+  <el-form>
+    <app-form-item :field="field" v-model="fieldValue" />
+    <app-form-item :field="fieldRemote" v-model="fieldRemoteValue" />
+  </el-form> 
+</template>
+<script>
+  import '../../utils/global-comps';
+  export default {
+    name: 'AppFormItemSelect',
+    data() {
+      return {
+        field: {
+          label: '普通select',
+          type: 'select',
+          data: [
+            {
+              label: '选择1',
+              value: 1
+            },
+            {
+              label: '选择2',
+              value: 2
+            }
+          ]
+        },
+        fieldValue: 1,
+        fieldRemote: {
+          label: '异步获取select',
+          type: 'select',
+          data: {
+            url: '/v1/commedias/tags',
+            label: 'tagDesc',
+            value: 'tagID'
+          }
+        },
+        fieldRemoteValue: 1
+      }
+    }
+  }
+</script>
+```
+## 上传
+```vue
+<template>
+  <el-form>
+    <app-form-item :field="fieldAudio" v-model="audio"/>
+    <app-form-item :field="fieldLrc" v-model="lrc"/>
+    <app-form-item :field="filedImage" v-model="image"/>
+  </el-form> 
+</template>
+<script>
+  import '../../utils/global-comps';
+  export default {
+    name: 'AppFormItemUpload',
+    data() {
+      return {
+        audio: '',
+        lrc: '',
+        image: '',
+        fieldAudio: {
+          label: '音频上传',
+          suffix: ['mp3', 'm4a'],
+          type: 'audio-upload',
+        },
+        fieldLrc: {
+          label: '歌词上传',
+          suffix: ['txt', 'zrce', 'zrce2'],
+          type: 'audio-upload',
+        },
+        filedImage: {
+          label: '歌词上传',
+          suffix: ['jpg', 'png', 'jpeg'],
+          type: 'image-upload', 
+        }
+      }
+    }
+  }
+</script>
+```

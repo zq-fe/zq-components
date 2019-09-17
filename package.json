@@ -1,0 +1,35 @@
+{
+  "name": "zq-components",
+  "version": "1.0.0",
+  "description": "table and form components for admin platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zq-fe/zq-components.git"
+  },
+  "keywords": [
+    "element-ui",
+    "admin"
+  ],
+  "dependencies": {
+    "ali-oss": "^6.1.1",
+    "axios": "0.18.1",
+    "element-ui": "^2.9.1",
+    "vue": "2.6.10",
+    "vue-router": "3.0.6",
+    "vuex": "^3.1.1",
+    "md5": "^2.2.1"
+  },
+  "devDependencies": {
+    "sass-loader": "^7.1.0"
+  },
+  "author": "wbzhou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zq-fe/zq-components/issues"
+  },
+  "homepage": "https://github.com/zq-fe/zq-components#readme"
+}
