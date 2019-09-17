@@ -6,7 +6,7 @@
  * todo: 内部状态管理
  */
 import Vue from 'vue'
-import { parseTime } from '../..scripts/utils'
+import { parseTime } from '../../scripts/utils'
 
 Vue.filter('time', function(value, record, column) {
   return parseTime(value, undefined, column)
