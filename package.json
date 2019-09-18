@@ -1,11 +1,8 @@
 {
   "name": "zq-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "table and form components for admin platform",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zq-fe/zq-components.git"
@@ -14,17 +11,39 @@
     "element-ui",
     "admin"
   ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "styleguide": "vue-cli-service styleguidist --mode development",
+    "styleguide:build": "vue-cli-service styleguidist:build"
+  },
   "dependencies": {
     "ali-oss": "^6.1.1",
     "axios": "0.18.1",
-    "element-ui": "^2.9.1",
-    "vue": "2.6.10",
-    "vuex": "^3.1.1",
-    "md5": "^2.2.1"
+    "core-js": "^2.6.5",
+    "element-ui": "^2.12.0",
+    "md5": "^2.2.1",
+    "node-sass": "^4.12.0",
+    "vue": "^2.6.10"
   },
   "devDependencies": {
-    "sass-loader": "^7.1.0"
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "less": "^3.0.4",
+    "less-loader": "^5.0.0",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-styleguidist": "^3.22.2",
+    "vue-template-compiler": "^2.6.10"
   },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "author": "wbzhou",
   "license": "ISC",
   "bugs": {
