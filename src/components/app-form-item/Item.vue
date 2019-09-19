@@ -115,6 +115,7 @@
       v-if="fieldItem.type === 'image-upload'"
       v-model="inputValue"
       :suffix="['jpg', 'png', 'jpeg']"
+      :multiple="fieldItem.multiple"
       class="app-audio-upload"
     />
     <audio-upload

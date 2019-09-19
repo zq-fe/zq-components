@@ -106,7 +106,7 @@
       return {
         audio: '',
         lrc: '',
-        image: '',
+        image: [],
         fieldAudio: {
           label: '音频上传',
           suffix: ['mp3', 'm4a'],
@@ -121,6 +121,7 @@
           label: '歌词上传',
           suffix: ['jpg', 'png', 'jpeg'],
           type: 'image-upload', 
+          multiple: true
         }
       }
     }
