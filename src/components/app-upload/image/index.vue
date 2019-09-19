@@ -141,6 +141,7 @@ export default {
 <style lang="scss">
 .app-audio-upload {
   display: flex;
+  flex-wrap: wrap;
 }
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
@@ -168,6 +169,7 @@ export default {
 .preview {
   position: relative;
   margin-right: 10px;
+  margin-bottom: 10px;
   > i {
     position: absolute;
     left: 34px;
