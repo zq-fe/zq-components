@@ -77,7 +77,6 @@
 </template>
 <script>
 import Vue from 'vue';
-import { events } from '../../utils/utils';
 import Search from './search/Index';
 import ColumnCell from './column-cell';
 import './filters';
