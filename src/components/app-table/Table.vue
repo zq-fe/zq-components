@@ -150,7 +150,6 @@ export default {
   },
   mounted() {
     this.doSearch();
-    events.$on('search', this.doSearch);
   },
   methods: {
     initParams() {
