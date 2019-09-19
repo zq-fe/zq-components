@@ -18,11 +18,14 @@ import AppForm from '../components/app-form'
 import AppFormItem from '../components/app-form-item'
 // Vue.prototype.$moment = moment()
 Vue.prototype.request = request
-
+const components = [
+  AppForm,
+  AppTable,
+  AppFormItem
+]
+components.forEach(component => {
+  Vue.component(component.name, component);
+});
 Vue.use(Element, {
   size: 'medium' // set element-ui default size
 })
-
-Vue.use(AppTable)
-Vue.use(AppForm)
-Vue.use(AppFormItem)

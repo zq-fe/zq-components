@@ -134,7 +134,7 @@
 <script>
 import Tag from './tag/index';
 import TagSelect from './tag-select/index';
-import { ImageUpload, AudioUpload } from '../upload';
+import { ImageUpload, AudioUpload } from '../app-upload';
 
 /**
  * form item组件模板.

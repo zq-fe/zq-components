@@ -1,6 +1,9 @@
 /**
  * Created by jiachenpan on 16/11/18.
  */
+import Vue from 'vue';
+
+export const events = new Vue();
 
 export function parseTime(time, cFormat) {
     if (arguments.length === 0) {
