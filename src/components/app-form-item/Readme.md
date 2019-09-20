@@ -45,12 +45,13 @@
   }
 </script>
 ```
-## 文本域类型
+## 下拉框
 ```vue
 <template>
   <el-form>
     <app-form-item :field="field" v-model="fieldValue" />
     <app-form-item :field="fieldRemote" v-model="fieldRemoteValue" />
+    <app-form-item :field="fieldRemoteSearch" v-model="fieldRemoteSearchValue" />
   </el-form> 
 </template>
 <script>
@@ -83,7 +84,18 @@
             value: 'tagID'
           }
         },
-        fieldRemoteValue: 1
+        fieldRemoteValue: 1,
+        fieldRemoteSearchValue: '',
+        fieldRemoteSearch: {
+          label: '异步获取select搜索',
+          type: 'select-search',
+          remote: {
+            url: '/v1/robots',
+            label: 'nickName',
+            value: 'userID',
+            keyword: 'name' 
+          } 
+        } 
       }
     }
   }
