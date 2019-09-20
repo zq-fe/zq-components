@@ -120,6 +120,11 @@ export default {
             filter: 'sex'
           },
           {
+            title: '音频',
+            name: 'userID',
+            type: 'audio'
+          },
+          {
             title: '账号类型',
             name: 'type',
             filter: type => {
