@@ -302,7 +302,7 @@ export default {
      */
     initDataList() {
       const field = this.field;
-      const { url, label, value, params } = field.remote || {};
+      const { url, label, value, params } = field.remote || field.data || {};
       if (url) {
         this.loading = true;
         this.request({
