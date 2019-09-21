@@ -25,17 +25,11 @@
     computed: {
       list: {
         get() {
-          return this.value;
+          return this.value || [];
         },
         set(list) {
-          debugger;
           this.$emit('input', list);
         }
-      }
-    },
-    data() {
-      return {
-        list: []
       }
     },
     methods: {

@@ -25,7 +25,7 @@
 ## 文本域类型
 ```vue
 <template>
-  <el-form>
+  <el-form label-width="100">
     <app-form-item :field="field" v-model="fieldValue" />
   </el-form> 
 </template>
@@ -62,7 +62,7 @@
           label: '枚举',
           type: 'enum'
         },
-        fieldValue: '' 
+        fieldValue: []
       }
     }
   }
