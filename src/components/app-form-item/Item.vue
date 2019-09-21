@@ -336,10 +336,9 @@ export default {
     /**
      * 远程获取菜单项
      */
-    remoteMethod() {
+    remoteMethod(keyValue) {
       const field = this.field;
       const { url, label, value, params, keyWord } = field.remote || {};
-      const keyValue = this.inputValue;
       const paramsData = {
         ...params,
         [keyWord]: keyValue

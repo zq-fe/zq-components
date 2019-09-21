@@ -93,7 +93,7 @@
             url: '/v1/robots',
             label: 'nickName',
             value: 'userID',
-            keyword: 'name' 
+            keyWord: 'name' 
           } 
         } 
       }
