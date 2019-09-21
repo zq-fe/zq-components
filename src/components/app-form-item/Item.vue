@@ -175,12 +175,18 @@
       v-if="fieldItem.type === 'switch'"
       v-model="inputValue"
     />
-
+    
+    <!-- 枚举选项 -->
+    <enum
+      v-if="fieldItem.type === 'enum'"
+      v-model="inputValue"
+    />
   </el-form-item>
 </template>
 <script>
 import Tag from './tag/index';
 import TagSelect from './tag-select/index';
+import Enum from './enum/Index';
 import { ImageUpload, AudioUpload } from '../app-upload';
 
 /**
@@ -193,7 +199,8 @@ export default {
     Tag,
     TagSelect,
     AudioUpload,
-    ImageUpload
+    ImageUpload,
+    Enum
   },
   props: {
     /**

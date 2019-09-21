@@ -45,6 +45,29 @@
   }
 </script>
 ```
+## 枚举类型
+```vue
+<template>
+  <el-form>
+    <app-form-item :field="field" v-model="fieldValue" />
+  </el-form> 
+</template>
+<script>
+  import '../../utils/global-comps';
+  export default {
+    name: 'AppFormItemArea',
+    data() {
+      return {
+        field: {
+          label: '枚举',
+          type: 'enum'
+        },
+        fieldValue: '' 
+      }
+    }
+  }
+</script>
+```
 ## 下拉框
 ```vue
 <template>
