@@ -309,7 +309,7 @@ export default {
      */
     initDataList() {
       const field = this.field;
-      const { url, label, value, params } = field.remote || {};
+      const { url, label, value, params } = field.remote || field.data || {};
       if (url) {
         this.loading = true;
         this.request({
@@ -343,10 +343,9 @@ export default {
     /**
      * 远程获取菜单项
      */
-    remoteMethod() {
+    remoteMethod(keyValue) {
       const field = this.field;
       const { url, label, value, params, keyWord } = field.remote || {};
-      const keyValue = this.inputValue;
       const paramsData = {
         ...params,
         [keyWord]: keyValue

@@ -116,7 +116,7 @@
             url: '/v1/robots',
             label: 'nickName',
             value: 'userID',
-            keyword: 'name' 
+            keyWord: 'name' 
           } 
         } 
       }
@@ -146,6 +146,13 @@
           label: '音频上传',
           suffix: ['mp3', 'm4a'],
           type: 'audio-upload',
+          multiple: true,
+          set: val => {  //期望得到数组时改变set 和get
+            return [val]
+          },
+          get: val => {
+            return val.toString()
+          },
         },
         fieldLrc: {
           label: '歌词上传',
