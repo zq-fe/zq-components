@@ -37,7 +37,10 @@ export default {
 
 <style lang="scss" scoped>
   .enum-list {
+    padding: 0 15px 10px;
     ol {
+      padding: 0;
+      margin: 0;
       list-style-type: upper-decimal;
     }
   }
