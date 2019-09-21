@@ -200,6 +200,8 @@ export default {
         const data = res.data;
         this.dataList = data.items || data.Items;
         this.pagination.total = data.total || data.Total;
+      }).catch(res => {
+        this.loading = false;
       });
     },
     updateHandler(row) {
