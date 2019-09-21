@@ -20,10 +20,11 @@
        filterable
        remote
        reserve-keyword
-       placeholder="请输入关键词"
+       :placeholder="fieldItem.placeholder"
        :remote-method="remoteMethod"
        :loading="loading"
     >
+      <i slot="prefix" class="el-input__icon el-icon-search"></i>
       <el-option
           v-for="item in fieldItem.data"
           :key="item.value"
