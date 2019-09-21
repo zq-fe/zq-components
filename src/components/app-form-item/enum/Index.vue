@@ -46,7 +46,9 @@
        * @param c
        */
       addHandler(c) {
-        this.list.push(c);
+        const list = this.list.slice();
+        list.push(c);
+        this.list = list;
       }
     }
   }
