@@ -104,9 +104,6 @@ export default {
         flex: 1;
         text-align: left;
       }
-      .upload-link {
-        padding: 0 20px;
-      }
       audio {
         height: 100%;
       }
