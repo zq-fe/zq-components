@@ -117,7 +117,7 @@
             label: 'nickName',
             value: 'userID',
             keyWord: 'name' 
-          } 
+          }
         } 
       }
     }

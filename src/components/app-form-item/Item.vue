@@ -282,14 +282,19 @@ export default {
       const data = this.field.data || {};
       return data.length;
     },
-    fieldItem() {
-      const field = { data: [], ...this.field };
-      // 支持在 ipt 直接配置 disabled
-      if (typeof (this.disabled) === 'boolean') {
-        field.disabled = this.disabled;
+    fieldItem: {
+      get () {
+        const field = { data: [], ...this.field };
+        // 支持在 ipt 直接配置 disabled
+        if (typeof (this.disabled) === 'boolean') {
+          field.disabled = this.disabled;
+        }
+        field.placeholder = field.placeholder || field.label;
+        return field;
+      },
+      set (val) {
+        this.field = val
       }
-      field.placeholder = field.placeholder || field.label;
-      return field;
     }
   },
   data() {
@@ -341,7 +346,7 @@ export default {
      * 远程获取菜单项
      */
     remoteMethod(keyValue) {
-      const field = this.field;
+      const field = this.fieldItem;
       const { url, label, value, params, keyWord } = field.remote || {};
       const paramsData = {
         ...params,
@@ -354,7 +359,7 @@ export default {
       }).then(res => {
         this.loading = false;
         const dataList = res.data.items || res.data.accounts;
-        this.field.data = dataList.map(o => {
+        this.fieldItem.data = dataList.map(o => {
           return {
             label: o[label],
             value: o[value]
