@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .enum-list {
     ol {
       list-style-type: upper-decimal;
