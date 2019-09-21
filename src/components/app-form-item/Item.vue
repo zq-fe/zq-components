@@ -353,7 +353,7 @@ export default {
         params: paramsData
       }).then(res => {
         this.loading = false;
-        const dataList = res.data.items;
+        const dataList = res.data.items || res.data.accounts;
         this.field.data = dataList.map(o => {
           return {
             label: o[label],
