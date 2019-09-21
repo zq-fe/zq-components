@@ -10,6 +10,7 @@
       </div>
       <div class="upload-link">
         <el-button :disabled="disabled" type="text">重新上传</el-button>
+        <el-button :disabled="disabled" type="text" @click.stop="removeHandler">删除</el-button>
       </div>
     </div>
     <div v-if="type === 'lrc'" class="upload-type-lrc">
@@ -86,6 +87,9 @@ export default {
         url: lrcURL,
         withCredentials: false
       })
+    },
+    removeHandler() {
+      this.$emit('remove', this.fileUrl);
     }
   }
 }

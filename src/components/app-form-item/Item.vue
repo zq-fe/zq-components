@@ -249,15 +249,12 @@ export default {
       get() {
         const field = this.field;
         const { type, get } = field;
-        if (type === 'text' || type === 'textarea') {
-          return this.value && this.value.toString();
-        }
         // 定制 get 方法，特殊字段处理
         if (get) {
           return get(this.value);
         }
         // 单选框 初始化值为 []
-        if (field.type === 'checkbox-group-single') {
+        if (type === 'checkbox-group-single') {
           return this.value || [];
         }
         return this.value;

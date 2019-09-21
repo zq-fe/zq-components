@@ -12,7 +12,7 @@
       <el-button class="selectBTN" type="text" :loading="loading" :disabled="disabled">选择文件</el-button>
       <span v-if="placeholder" class="upload-tip">{{ placeholder }}</span>
     </div>
-    <upload-preview v-if="fileUrl" v-loading="loading" :fileUrl="fileUrl" :disabled="disabled" class="upload-preview"/>
+    <upload-preview v-if="fileUrl" v-loading="loading" :fileUrl="fileUrl" :disabled="disabled" @remove="removeHandler"class="upload-preview"/>
   </el-upload>
 </template>
 <script>
@@ -48,20 +48,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      loading: false,
-      dir: OssConfig.directory,
-      base: OssConfig.baseUrl,
-      bucket: OssConfig.bucket,
-      accessId: OssConfig.accessId,
-      accessKey: OssConfig.accessKey,
-      // base: 'http://res-static.inframe.mobi/',
-      policy: '',
-      signature: '',
-      client: ''
-    }
-  },
   computed: {
     accept() {
       const temp = this.suffix.map(item => {
@@ -76,6 +62,20 @@ export default {
       get() {
         return this.value
       }
+    }
+  },
+  data() {
+    return {
+      loading: false,
+      dir: OssConfig.directory,
+      base: OssConfig.baseUrl,
+      bucket: OssConfig.bucket,
+      accessId: OssConfig.accessId,
+      accessKey: OssConfig.accessKey,
+      // base: 'http://res-static.inframe.mobi/',
+      policy: '',
+      signature: '',
+      client: ''
     }
   },
   created() {
@@ -124,6 +124,9 @@ export default {
     change(url) {
       this.fileUrl = url
       this.$emit('change', url);
+    },
+    removeHandler() {
+      this.fileUrl = '';
     }
   }
 }
