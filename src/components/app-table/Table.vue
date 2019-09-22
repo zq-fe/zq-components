@@ -42,7 +42,7 @@
           <el-link
             type="primary"
             v-if="actions['delete']"
-            :disabled="actions.delete.disabled ? actions.confirm.disabled(scope.row) : false"
+            :disabled="actions.delete.disabled ? actions.delete.disabled(scope.row) : false"
             @click="deleteHandler(scope.row)"
           >
             删除
