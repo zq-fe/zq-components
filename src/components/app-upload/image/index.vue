@@ -10,7 +10,9 @@
       :http-request="uploadHandler"
       action=""
       :accept="accept"
+      :disabled="disabled"
       class="avatar-uploader"
+      :class="{disabled: disabled}"
     >
       <i class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
@@ -20,6 +22,7 @@
       :http-request="uploadHandler"
       action=""
       :accept="accept"
+      :disabled="disabled"
       class="avatar-uploader"
     >
       <img v-if="imageUrl && imageUrl.length>0" :src="imageUrl" class="avatar">
@@ -51,6 +54,12 @@ export default {
       type: Boolean,
       default() {
         return false;
+      }
+    },
+    disabled: {
+      type: Boolean,
+      default() {
+        return false
       }
     }
   },
@@ -150,15 +159,28 @@ export default {
   position: relative;
   overflow: hidden;
 }
+
 .avatar-uploader .el-upload:hover {
   border-color: #409eff;
+}
+.disabled .el-upload:hover {
+  border-color: #C0C4CC;
+  cursor: not-allowed;
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #C0C4CC;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+  }
 }
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
   width: 100px;
   height: 100px;
-  line-height: 100px;
+  line-height: 100px!important;
   text-align: center;
 }
 .avatar {
