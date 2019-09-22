@@ -25,7 +25,7 @@
     computed: {
       list: {
         get() {
-          return this.value || [];
+          return (this.value || []).slice();
         },
         set(list) {
           this.$emit('input', list);
@@ -39,7 +39,9 @@
        * @param i
        */
       removeHandler(e, i) {
-        this.list.splice(i, 1);
+        const list = this.list.slice();
+        list.splice(i, 1);
+        this.list = list;
       },
       /**
        * 添加枚举项
