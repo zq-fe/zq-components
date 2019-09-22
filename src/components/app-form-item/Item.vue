@@ -367,12 +367,16 @@
         }).then(res => {
           this.loading = false;
           const dataList = res.data.items || res.data.accounts;
-          this.fieldItem.data = dataList.map(o => {
-            return {
-              label: o[label],
-              value: o[value]
-            }
-          });
+          if (dataList) {
+            this.fieldItem.data = dataList.map(o => {
+              return {
+                label: o[label],
+                value: o[value]
+              }
+            });
+          } else {
+            this.fieldItem.data = []
+          }
         })
       }
     }

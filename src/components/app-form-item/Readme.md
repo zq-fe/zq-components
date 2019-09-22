@@ -113,10 +113,10 @@
           label: '异步获取select搜索',
           type: 'select-search',
           remote: {
-            url: '/v1/robots',
+            url: '/v1/users/search',
             label: 'nickName',
             value: 'userID',
-            keyWord: 'name' 
+            keyWord: 'keyword' 
           }
         } 
       }
