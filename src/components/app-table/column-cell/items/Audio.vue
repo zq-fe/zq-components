@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span v-if="url">
     <audio ref="audio" style="diplay:none" @ended="isPlaying = false"></audio>
     <el-button
       :type="isPlaying?'success':'warning'"

@@ -12,7 +12,7 @@
       <el-button class="selectBTN" type="text" :loading="loading" :disabled="disabled">选择文件</el-button>
       <span v-if="placeholder" class="upload-tip">{{ placeholder }}</span>
     </div>
-    <upload-preview v-if="fileUrl" v-loading="loading" :fileUrl="fileUrl" :disabled="disabled" @remove="removeHandler"class="upload-preview"/>
+    <upload-preview v-if="fileUrl" v-loading="loading" :fileUrl="fileUrl" :disabled="disabled" @remove="removeHandler" class="upload-preview"/>
   </el-upload>
 </template>
 <script>
