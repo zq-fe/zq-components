@@ -1,6 +1,6 @@
 <template>
   <div class="enum-manage">
-    <enum-list :list="list" @remove="removeHandler"/>
+    <enum-list :list="list" @remove="removeHandler" :disabled="disabled"/>
     <enum-item @add="addHandler" :disabled="disabled"/>
   </div>
 </template>
