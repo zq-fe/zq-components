@@ -3,7 +3,7 @@
     <transition-group tag="ol" name="el-fade-in-linear">
       <li v-for="(e, index) in list" :key="'enum-item' + index">
         {{e}}
-        <el-button type="text" @click.native="deleteEnumHandler(e, index)">
+        <el-button type="text" @click.native="deleteEnumHandler(e, index)" :disabled="disabled">
           <i class="el-icon-delete"></i>
         </el-button>
       </li>
@@ -20,6 +20,12 @@
         type: Array,
         default() {
           return []
+        }
+      },
+      disabled: {
+        type: Boolean,
+        default() {
+          return false;
         }
       }
     },
