@@ -56,6 +56,7 @@
       v-model="inputValue"
       :disabled="fieldItem.disabled"
       :placeholder="fieldItem.placeholder"
+      v-bind="$attrs"
       class="input"
     />
     
@@ -76,6 +77,7 @@
       :rows="fieldItem.rows"
       :disabled="fieldItem.disabled"
       :placeholder="fieldItem.placeholder"
+      v-bind="$attrs"
       type="textarea"
       class="input"
     />

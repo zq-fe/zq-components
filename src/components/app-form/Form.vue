@@ -12,7 +12,7 @@
       <div class="form-item" v-for="(field, index) in fields" :key="`form-item${ index }`" >
         <!-- @slot 对于特定form 控件，需要特定添加，需要特定位置时，需要在表单项中添加占位，type 为slot -->
         <slot v-if="field.type === 'slot'" :name="field.name" />
-        <app-form-item :showLabel="true" v-model="query[field.name]" :field="field" v-else/>
+        <app-form-item v-bind="$attrs" :showLabel="true" v-model="query[field.name]" :field="field" v-else/>
       </div>
       <!-- @slot 添加整个表单项, 可以使用elementui 表单项 -->
       <slot name="formItem" />

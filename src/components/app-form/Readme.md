@@ -3,7 +3,7 @@
 <template>
   <div>
     <button @click="showForm = true">显示form</button>
-    <app-form :form="config" v-model="form" :show.sync="showForm" @done="doneHandler">
+    <app-form maxlength="5" :form="config" v-model="form" :show.sync="showForm" @done="doneHandler">
       <!-- 添加到自定义app-form-item里 -->
       <template slot="age">
         <app-form-item :field="ageItem" v-model="age"></app-form-item> 

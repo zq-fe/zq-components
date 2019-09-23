@@ -3,7 +3,7 @@
 ```vue
 <template>
   <el-form>
-    <app-form-item :field="field" v-model="fieldValue" />
+    <app-form-item :field="field" maxlength="5" v-model="fieldValue" />
   </el-form> 
 </template>
 <script>
