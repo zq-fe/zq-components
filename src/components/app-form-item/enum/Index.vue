@@ -1,7 +1,7 @@
 <template>
   <div class="enum-manage">
     <enum-list :list="list" @remove="removeHandler"/>
-    <enum-item @add="addHandler" />
+    <enum-item @add="addHandler" :disabled="disabled"/>
   </div>
 </template>
 
@@ -19,6 +19,12 @@
         type: Array,
         default() {
           return [];
+        }
+      },
+      disabled: {
+        type: Boolean,
+        default() {
+          return false;
         }
       }
     },

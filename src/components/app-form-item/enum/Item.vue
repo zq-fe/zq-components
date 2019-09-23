@@ -2,14 +2,21 @@
   <div class="enum-item">
     <div>
       <el-input
-          type="textarea"
-          :rows="2"
-          placeholder="请输入内容"
-          v-model="content">
+        :disabled="disabled"
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内容"
+        v-model="content">
       </el-input>
     </div>
     <div>
-      <el-button type="text" @click.native="addContentHandler">添加内容</el-button>
+      <el-button
+        type="text"
+        :disabled="disabled"
+        @click.native="addContentHandler"
+      >
+        添加内容
+      </el-button>
     </div>
   </div>
 </template>
@@ -17,6 +24,14 @@
 <script>
 export default {
   name: 'EnumItem',
+  props: {
+    disabled: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    }
+  },
   data() {
     return {
       content: ''
