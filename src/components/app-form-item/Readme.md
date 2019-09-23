@@ -14,7 +14,8 @@
       return {
         field: {
           label: '文本',
-          type: 'text'
+          type: 'text',
+          maxlength:2
         },
         fieldValue: 1 
       }
@@ -37,7 +38,8 @@
       return {
         field: {
           label: '文本域',
-          type: 'textarea'
+          type: 'textarea',
+          maxlength:4
         },
         fieldValue: 1
       }
