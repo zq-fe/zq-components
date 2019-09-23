@@ -357,7 +357,7 @@
        */
       remoteMethod(keyValue) {
         const field = this.fieldItem;
-        const { url, label, value, params, keyWord } = field.remote || {};
+        const { url, label, value, params, keyWord, isList } = field.remote || {};
         const paramsData = {
           ...params,
           [keyWord]: keyValue
@@ -368,14 +368,17 @@
           params: paramsData
         }).then(res => {
           this.loading = false;
-          const dataList = res.data.items || res.data.accounts;
-          if (dataList) {
+          const data = res.data;
+          const dataList = data.items || data.accounts
+          if (dataList && dataList.length > 0) {
             this.fieldItem.data = dataList.map(o => {
               return {
                 label: o[label],
                 value: o[value]
               }
             });
+          } else if (data[value]){
+            this.fieldItem.data = [{label: data[label], value: data[value]}]
           } else {
             this.fieldItem.data = []
           }

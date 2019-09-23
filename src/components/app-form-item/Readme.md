@@ -115,7 +115,7 @@
           label: '异步获取select搜索',
           type: 'select-search',
           remote: {
-            url: '/v1/users/search',
+            url: '/v1/robots',
             label: 'nickName',
             value: 'userID',
             keyWord: 'keyword' 
