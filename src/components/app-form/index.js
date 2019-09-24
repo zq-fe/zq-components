@@ -1,2 +1,2 @@
-import XForm from './Form.vue'
-export default XForm
+import AppForm from './Form.vue'
+export default AppForm

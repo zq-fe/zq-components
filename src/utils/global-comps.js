@@ -7,12 +7,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import request from './request'
 import AppTable from '../components/app-table'
 import AppForm from '../components/app-form'
+import AppAudio from '../components/app-audio'
 import AppFormItem from '../components/app-form-item'
 Vue.prototype.request = request
 const components = [
   AppForm,
   AppTable,
-  AppFormItem
+  AppFormItem,
+  AppAudio
 ]
 components.forEach(component => {
   Vue.component(component.name, component);
