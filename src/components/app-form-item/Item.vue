@@ -1,5 +1,5 @@
 <template>
-  <el-form-item v-if="field.display !== false" :style="{ ...field.style }" :prop="fieldItem.name" :label="showLabel ? fieldItem.label : ''">
+  <el-form-item class="app-form-item" v-if="field.display !== false" :style="{ ...field.style }" :prop="fieldItem.name" :label="showLabel ? fieldItem.label : ''">
     <!-- 日期组件 -->
     <el-date-picker
       v-if="fieldItem.type == 'daterange'"
