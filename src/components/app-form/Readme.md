@@ -60,6 +60,12 @@
                   value: 2
                 }
               ]
+            },
+            {
+              label: '性别',
+              name: 'sex',
+              type: 'image-upload',
+              multiple: true
             }
           ]
         },

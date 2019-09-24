@@ -81,6 +81,7 @@ export default {
   },
   data() {
     return {
+      fileList: [],
       dir: OssConfig.directory,
       base: OssConfig.baseUrl,
       bucket: OssConfig.bucket,
@@ -93,9 +94,9 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      this.imageUrl.forEach((item, index) => {
+      this.fileList.forEach((item, index) => {
         if (file === item) {
-          this.imageUrl.splice(index, 1);
+          this.fileList.splice(index, 1);
         }
       });
     },
@@ -135,7 +136,8 @@ export default {
     },
     change(url) {
       if (this.multiple) {
-        this.imageUrl.push(url);
+        this.fileList.push(url)
+        this.imageUrl = this.fileList
       } else {
         this.imageUrl = url;
       }
