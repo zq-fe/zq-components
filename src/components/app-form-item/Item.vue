@@ -392,6 +392,9 @@
   }
 </script>
 <style lang="scss" scoped>
-  .x-ipt {
+  .app-form-item {
+    .is-disabled {
+      color: #606266 !important;
+    }
   }
 </style>
