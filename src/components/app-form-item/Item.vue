@@ -24,6 +24,7 @@
       :placeholder="fieldItem.placeholder"
       :remote-method="remoteMethod"
       :loading="loading"
+      :clearable="true"
     >
       <i slot="prefix" class="el-input__icon el-icon-search"></i>
       <el-option
@@ -58,6 +59,7 @@
       :placeholder="fieldItem.placeholder"
       :maxlength="fieldItem.maxlength"
       class="input"
+      :clearable="true"
     />
     
     <!-- 文本类型， 数字 -->
@@ -68,6 +70,7 @@
       :disabled="fieldItem.disabled"
       :placeholder="fieldItem.placeholder"
       class="input"
+      :clearable="true"
     />
     
     <!-- 文本类型， 文本域 -->
@@ -80,6 +83,7 @@
       :maxlength="fieldItem.maxlength"
       type="textarea"
       class="input"
+      :clearable="true"
     />
     
     <!-- 自定义组件， 标签  -->
