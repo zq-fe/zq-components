@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="multiple && fileList.length>0" v-for="(item,index) in fileList" :key="index" class="preview">
+    <div v-if="multiple && imageUrl.length>0" v-for="(item,index) in imageUrl" :key="index" class="preview">
       <img class="avatar" :src="item" alt="">
       <i @click="handleRemove(item)" class="el-icon-delete"></i>
     </div>
@@ -81,7 +81,6 @@ export default {
   },
   data() {
     return {
-      fileList: [],
       dir: OssConfig.directory,
       base: OssConfig.baseUrl,
       bucket: OssConfig.bucket,
@@ -94,9 +93,9 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      this.fileList.forEach((item, index) => {
+      this.imageUrl.forEach((item, index) => {
         if (file === item) {
-          this.fileList.splice(index, 1);
+          this.imageUrl.splice(index, 1);
         }
       });
     },
@@ -136,8 +135,7 @@ export default {
     },
     change(url) {
       if (this.multiple) {
-        this.fileList.push(url);
-        this.imageUrl = this.fileList;
+        this.imageUrl.push(url);
       } else {
         this.imageUrl = url;
       }
