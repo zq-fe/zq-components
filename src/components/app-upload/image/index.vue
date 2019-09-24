@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div v-if="multiple && imageUrl.length>0" v-for="(item,index) in imageUrl" :key="index" class="preview">
-      <img class="avatar" :src="item" alt="">
+    <div v-if="multiple" v-for="(item,index) in imageUrl" :key="index" class="preview">
+      <el-image class="avatar" :src="item" :preview-src-list="imageUrl" />
       <i @click="handleRemove(item)" class="el-icon-delete"></i>
     </div>
+    <div v-if="!multiple && srcList.length>0" class="preview">
+      <el-image class="avatar" :src="srcList[0]" :preview-src-list="srcList" />
+      <i @click="handleRemoveSingle" class="el-icon-delete"></i>
+    </div>
     <el-upload
-      v-if="multiple"
       :show-file-list="false"
       :http-request="uploadHandler"
       action=""
@@ -15,18 +18,6 @@
       :class="{disabled: disabled}"
     >
       <i class="el-icon-plus avatar-uploader-icon"></i>
-    </el-upload>
-    <el-upload
-      v-if="!multiple"
-      :show-file-list="false"
-      :http-request="uploadHandler"
-      action=""
-      :accept="accept"
-      :disabled="disabled"
-      class="avatar-uploader"
-    >
-      <img v-if="imageUrl && imageUrl.length>0" :src="imageUrl" class="avatar">
-      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
   </div>
 </template>
@@ -81,6 +72,7 @@ export default {
   },
   data() {
     return {
+      srcList: [],
       fileList: [],
       dir: OssConfig.directory,
       base: OssConfig.baseUrl,
@@ -99,6 +91,10 @@ export default {
           this.fileList.splice(index, 1);
         }
       });
+    },
+    handleRemoveSingle() {
+      this.srcList = []
+      this.imageUrl = ''
     },
     generateSign() {
       this.client = new AliOSS({
@@ -139,7 +135,8 @@ export default {
         this.fileList.push(url)
         this.imageUrl = this.fileList
       } else {
-        this.imageUrl = url;
+        this.srcList = [url]
+        this.imageUrl =  this.srcList[0]
       }
       this.$emit("change", this.imageUrl);
     }
@@ -196,9 +193,9 @@ export default {
     position: absolute;
     left: 34px;
     color: #fff;
-    top: 34px;
+    top: 38px;
     display: none;
-    font-size: 30px;
+    font-size: 24px;
   }
   &:hover {
     > i {

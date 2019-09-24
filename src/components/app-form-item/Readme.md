@@ -115,12 +115,16 @@
           label: '异步获取select搜索',
           type: 'select-search',
           remote: {
-            url: '/v1/robots',
-            label: 'nickName',
-            value: 'userID',
-            keyWord: 'keyword' 
+            url: '/v1/posts/songs-search',
+            label: 'workName',
+            value: 'songID',
+           keyWord: 'songID',
+           params: {
+             page: 1,
+             limit: 200
+             }
           }
-        } 
+        }
       }
     }
   }
@@ -165,7 +169,6 @@
           label: '图片上传',
           suffix: ['jpg', 'png', 'jpeg'],
           type: 'image-upload', 
-          multiple: true
         }
       }
     }
