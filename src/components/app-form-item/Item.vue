@@ -165,6 +165,7 @@
       v-model="inputValue"
       :suffix="['jpg', 'png', 'jpeg']"
       :multiple="fieldItem.multiple"
+      :limit="fieldItem.limit"
       :disabled="fieldItem.disabled"
       class="app-audio-upload"
     />
