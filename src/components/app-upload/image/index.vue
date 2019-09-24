@@ -11,6 +11,7 @@
       action=""
       :accept="accept"
       :disabled="disabled"
+      :limit="limit"
       class="avatar-uploader"
       :class="{disabled: disabled}"
     >
@@ -61,7 +62,13 @@ export default {
       default() {
         return false
       }
-    }
+    },
+    limit: {
+      type: Number,
+      default() {
+        return 9
+      }
+    },
   },
   computed: {
     accept() {
