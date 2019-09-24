@@ -162,7 +162,7 @@
           type: 'audio-upload',
         },
         filedImage: {
-          label: '歌词上传',
+          label: '图片上传',
           suffix: ['jpg', 'png', 'jpeg'],
           type: 'image-upload', 
           multiple: true

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="multiple && fileList.length>0" v-for="(item,index) in fileList" :key="index" class="preview">
+    <div v-if="multiple && imageUrl.length>0" v-for="(item,index) in imageUrl" :key="index" class="preview">
       <img class="avatar" :src="item" alt="">
       <i @click="handleRemove(item)" class="el-icon-delete"></i>
     </div>
@@ -136,8 +136,8 @@ export default {
     },
     change(url) {
       if (this.multiple) {
-        this.fileList.push(url);
-        this.imageUrl = this.fileList;
+        this.fileList.push(url)
+        this.imageUrl = this.fileList
       } else {
         this.imageUrl = url;
       }
