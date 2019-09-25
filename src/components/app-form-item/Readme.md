@@ -99,7 +99,7 @@
             }
           ]
         },
-        fieldValue: 1,
+        fieldValue: [],
         fieldRemote: {
           label: '异步获取select',
           type: 'select',
@@ -168,7 +168,7 @@
         filedImage: {
           label: '图片上传',
           suffix: ['jpg', 'png', 'jpeg'],
-          type: 'image-upload', 
+          type: 'image-upload',
         }
       }
     }
