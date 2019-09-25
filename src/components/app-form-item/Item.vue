@@ -394,8 +394,8 @@
 </script>
 <style lang="scss" scoped>
   .app-form-item {
-    .is-disabled {
-      .el-textarea__inner {
+    /deep/.is-disabled {
+      .el-textarea__inner, .el-input__inner {
         color: #606266 !important;
       }
     }
