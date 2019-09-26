@@ -2,47 +2,41 @@
 
 ```vue
 <template>
-  <!-- 注入表格 -->
-  <app-table :data="dataConfig">
-    <!-- 查询条件 slot -->
-    <template slot="search">
-      <el-button type="primary" icon="el-icon-plus" @click="clickHandler"
-        >创建账户</el-button
-      >
-    </template>
-    <!-- 特殊列slot  -->
-    <template slot="column">
-      <el-table-column label="标签">
-        <template slot-scope="scope">
-          {{ scope.row.tags }}
-        </template>
-      </el-table-column>
-    </template>
-  </app-table>
+  <div>
+    <!-- 注入表格 -->
+    <app-table :data="dataConfig" :show-options="false" ref="apptable">
+      <!-- 查询条件 slot -->
+      <template slot="search">
+        <el-button type="primary" icon="el-icon-plus" @click="addAccount">创建账户</el-button>
+      </template>
+      <!-- 特殊列slot  -->
+      <template slot="column">
+        <el-table-column label="标签">
+          <template slot-scope="scope">
+            {{ scope.row.tags | tag(tagList)}}
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-link type="primary" @click="updateAccount(scope.row)">编辑</el-link>
+          </template>
+        </el-table-column>
+      </template>
+    </app-table>
+    <!-- 注入form -->
+    <app-form :form="form" name="accountForm" v-model="account" :show.sync="showDialog" @done="updateTable"/>
+  </div>
 </template>
+
 <script>
-import '../../utils/global-comps';
+
 export default {
-  name: 'TableDemo',
+  name: 'AccountIndex',
   data() {
     return {
       showDialog: false,
       dataConfig: {
         url: '/v1/robots',
-        actions: {
-          delete: true,
-          // config url method ID
-          /**
-          * config url method ID
-          * delete: {
-          *    url: '', // default /v1/robots
-          *    method: '', // default delete
-          *     ID: '' 
-          *  }
-          */
-          update: true,
-          preview: true
-        },
         params: [
           {
             name: 'range',
@@ -96,6 +90,10 @@ export default {
               {
                 label: 'KOL账号',
                 value: 2
+              },
+              {
+                label: '红包账号',
+                value: 3
               }
             ]
           }
@@ -120,30 +118,174 @@ export default {
             filter: 'sex'
           },
           {
-            title: '音频',
-            name: 'userID',
-            type: 'audio'
-          },
-          {
             title: '账号类型',
             name: 'type',
-            filter: type => {
-              return type === 1 ? '普通账户' : 'KOL账户';
+            filter: (type) => {
+              const data = [
+                {
+                  label: '未知',
+                  value: 0
+                },
+                {
+                  label: '普通账户',
+                  value: 1
+                },
+                {
+                  label: 'KOL账号',
+                  value: 2
+                },
+                {
+                  label: '红包账号',
+                  value: 3
+                }
+              ]
+              let res = ''
+              data.map(item => {
+                if (item.value === type) {
+                  res = item.label
+                }
+              })
+              return res
             }
+          },
+          {
+            title: '钻石余额',
+            name: 'coinCnt'
+          },
+          {
+            title: '金币余额',
+            name: 'zsCnt'
           },
           {
             title: '作品数量',
             name: 'songCnt'
           }
         ]
+      },
+      form: {
+        url: '/v1/robots',
+        fields: [
+          {
+            name: 'nickName',
+            label: '昵称',
+            type: 'text',
+            required: true
+          },
+          {
+            name: 'avatar',
+            label: '头像',
+            type: 'image-upload',
+            required: true
+          },
+          {
+            name: 'sex',
+            label: '性别',
+            type: 'radio-group',
+            data: [
+              {
+                label: '男',
+                value: 1
+              },
+              {
+                label: '女',
+                value: 2
+              }
+            ],
+            required: true
+          },
+          {
+            name: 'type',
+            label: '账号类别',
+            type: 'radio-group',
+            data: [
+              {
+                label: '普通账户',
+                value: 1
+              },
+              {
+                label: 'KOL账号',
+                value: 2
+              },
+              {
+                label: '红包账户',
+                value: 3
+              }
+            ],
+            required: true
+          },
+          {
+            name: 'signature',
+            label: '签名',
+            type: 'textarea'
+          },
+          {
+            name: 'tags',
+            label: '标签',
+            type: 'checkbox-group-single',
+            data: {
+              url: '/v1/commedias/tags',
+              label: 'tagDesc',
+              value: 'tagID'
+            },
+            required: true
+          },
+          {
+            name: 'coinCnt',
+            label: '充金币',
+            type: 'number',
+            disabled: () => {
+              return this.account.type !== 3;
+            }
+          },
+          {
+            name: 'zsCnt',
+            label: '充钻石',
+            type: 'number',
+            disabled: () => {
+              return this.account.type !== 3;
+            }
+          }
+        ]
+      },
+      account: {
+        nickName: '',
+        avatar: '',
+        sex: 1
       }
-    };
+    }
   },
+
   methods: {
-    clickHandler() {
-      this.$message('hello, click');
+    /**
+     * 添加账户 post
+     */
+    addAccount() {
+      this.form.method = 'post';
+      this.showDialog = true;
+    },
+    /**
+     * 更新账户 put
+     * @param account
+     */
+    updateAccount(account) {
+      this.account = { ...account };
+      this.account.coinCnt = 0
+      this.account.zsCnt = 0
+      this.form.method = 'put';
+      this.showDialog = true;
+    },
+    /**
+     * 更新表格
+     */
+    updateTable() {
+      this.$refs.apptable.doSearch()
     }
   }
-};
+}
 </script>
+
+<style lang="scss" scoped>
+
+</style>
+
 ```

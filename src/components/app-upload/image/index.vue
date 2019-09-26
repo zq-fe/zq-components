@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div v-if="multiple" v-for="(item,index) in imageUrl" :key="index" class="preview">
-      <el-image class="avatar" :src="item" :preview-src-list="imageUrl" />
-      <i @click="handleRemove(item)" class="el-icon-delete"></i>
+    <div v-if="multiple" class="preview">
+      <div v-for="(item,index) in imageUrl" :key="index">
+        <el-image class="avatar" :src="item" :preview-src-list="imageUrl" />
+        <i @click="handleRemove(item)" class="el-icon-delete"></i>
+      </div>
     </div>
-    <div v-if="!multiple && srcList.length>0" class="preview">
-      <el-image class="avatar" :src="srcList[0]" :preview-src-list="srcList" />
+    <div v-else class="preview">
+      <el-image v-if="imageUrl" class="avatar" :src="imageUrl" :preview-src-list="[imageUrl]" />
       <i @click="handleRemoveSingle" class="el-icon-delete"></i>
     </div>
     <el-upload
@@ -66,6 +68,7 @@ export default {
         this.$emit("input", val);
       },
       get() {
+
         return this.value;
       }
     }
@@ -136,7 +139,7 @@ export default {
         this.imageUrl = this.fileList
       } else {
         this.srcList = [url]
-        this.imageUrl =  this.srcList[0]
+        this.imageUrl =  url
       }
       this.$emit("change", this.imageUrl);
     }
@@ -189,7 +192,7 @@ export default {
   position: relative;
   margin-right: 10px;
   margin-bottom: 10px;
-  > i {
+   i {
     position: absolute;
     left: 34px;
     color: #fff;
@@ -198,7 +201,7 @@ export default {
     font-size: 24px;
   }
   &:hover {
-    > i {
+    i {
       display: block;
       cursor: pointer;
     }

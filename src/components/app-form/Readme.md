@@ -28,7 +28,7 @@ export default {
         ]
       },
       formData: {},
-      showForm: true
+      showForm: false
     }
   },
   methods: {
