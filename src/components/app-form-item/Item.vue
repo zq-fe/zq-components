@@ -273,7 +273,8 @@
     },
     computed: {
       previewPlayUrl() {
-        return this.selectedOptionItem.playUrl || this.fieldItem.playUrl;
+        const { getPalyUrl } = this.field;
+        return (getPalyUrl && getPalyUrl()) || this.selectedOptionItem.playUrl;
       },
       inputValue: {
         get() {

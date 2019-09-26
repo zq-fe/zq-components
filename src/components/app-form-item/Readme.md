@@ -114,7 +114,9 @@
         fieldRemoteSearch: {
           label: '异步获取select搜索',
           type: 'select-search',
-          playUrl: 'http://song-static.inframe.mobi/feed/web-admin-offline/1569487412816_8754dad6b775ee9d571f3d7fe0f28525.mp3',
+          getPalyUrl() {
+            return 'http://song-static.inframe.mobi/feed/web-admin-offline/1569487412816_8754dad6b775ee9d571f3d7fe0f28525.mp3'
+          },
           remote: {
             url: '/v1/posts/songs-search',
             label: 'workName',
