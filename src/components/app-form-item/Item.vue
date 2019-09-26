@@ -14,26 +14,33 @@
     />
     
     <!-- 下来远程搜索  -->
-    <el-select
-      v-if="fieldItem.type == 'select-search'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
-      filterable
-      remote
-      reserve-keyword
-      :placeholder="fieldItem.placeholder"
-      :remote-method="remoteMethod"
-      :loading="loading"
-      :clearable="true"
-    >
-      <i slot="prefix" class="el-input__icon el-icon-search"></i>
-      <el-option
-        v-for="item in fieldItem.data"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value">
-      </el-option>
-    </el-select>
+    <div>
+      <el-select
+          v-if="fieldItem.type == 'select-search'"
+          v-model="inputValue"
+          :disabled="fieldItem.disabled"
+          filterable
+          remote
+          reserve-keyword
+          :placeholder="fieldItem.placeholder"
+          :remote-method="remoteMethod"
+          :loading="loading"
+          :clearable="true"
+      >
+        <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        <el-option
+            v-for="item in fieldItem.data"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          <span style="float: left">{{ item.label }}</span>
+          <span v-if="item.playUrl" style="float: right; color: #8492a6; font-size: 13px;">
+        </span>
+        </el-option>
+      </el-select>
+      <app-audio v-if="previewPlayUrl" :url="previewPlayUrl" style="margin: 0 15px 0"/>
+    </div>
+    
     
     <!-- 下拉列表 -->
     <el-select
@@ -252,9 +259,21 @@
         default() {
           return true;
         }
+      },
+      /**
+       * 播放类，预览url 可播放
+       */
+      playUrl: {
+        type: String,
+        default() {
+          return ''
+        }
       }
     },
     computed: {
+      previewPlayUrl() {
+        return this.selectedOptionItem.playUrl || this.fieldItem.playUrl;
+      },
       inputValue: {
         get() {
           const field = this.field;
@@ -273,6 +292,9 @@
           const field = this.field;
           const format = field.format;
           const set = field.set;
+          const selectedItems = this.optionsData.filter(v => v.value === value);
+          
+          this.selectedOptionItem = selectedItems.length > 0 ? selectedItems[0] : {};
           if (format) {
             /**
              * 修改表单项值回调 v-model
@@ -313,7 +335,9 @@
     },
     data() {
       return {
-        loading: false
+        loading: false,
+        optionsData: [],
+        selectedOptionItem: {}
       }
     },
     created() {
@@ -333,7 +357,8 @@
             params
           }).then(res => {
             this.loading = false;
-            const dataList = res.data.items;
+            const dataList = res.data.items && [];
+            this.optionsData = dataList.slice();
             this.field.data = dataList.map(o => {
               return {
                 label: o[label],
@@ -361,7 +386,7 @@
        */
       remoteMethod(keyValue) {
         const field = this.fieldItem;
-        const { url, label, value, params, keyWord, isList } = field.remote || {};
+        const { url, label, value, params, keyWord, isList, playUrl } = field.remote || {};
         const paramsData = {
           ...params,
           [keyWord]: keyValue
@@ -373,16 +398,27 @@
         }).then(res => {
           this.loading = false;
           const data = res.data;
-          const dataList = data.items || data.accounts
+          const dataList = data.items || data.accounts || [];
+          this.optionsData = dataList.slice();
           if (dataList && dataList.length > 0) {
+            let i = 0;
             this.fieldItem.data = dataList.map(o => {
               return {
+                key: i++,
                 label: o[label],
+                playUrl: o[playUrl],
                 value: o[value]
               }
             });
           } else if (data[value]){
-            this.fieldItem.data = [{label: data[label], value: data[value]}]
+            this.fieldItem.data = [
+              {
+                key: 0,
+                label: data[label],
+                playUrl: o[playUrl],
+                value: data[value]}
+            ];
+            this.optionsData = data;
           } else {
             this.fieldItem.data = []
           }
