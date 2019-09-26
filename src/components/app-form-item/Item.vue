@@ -358,7 +358,7 @@
             params
           }).then(res => {
             this.loading = false;
-            const dataList = res.data.items && [];
+            const dataList = res.data.items || [];
             this.optionsData = dataList.slice();
             this.field.data = dataList.map(o => {
               return {
