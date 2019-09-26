@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="multiple" class="preview">
-      <div v-for="(item,index) in imageUrl" :key="index">
+    <div v-if="multiple" class="app-audio-upload">
+      <div v-for="(item,index) in imageUrl" :key="index" class="preview">
         <el-image class="avatar" :src="item" :preview-src-list="imageUrl" />
         <i @click="handleRemove(item)" class="el-icon-delete"></i>
       </div>
