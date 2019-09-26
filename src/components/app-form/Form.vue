@@ -7,6 +7,7 @@
     :close-on-click-modal="false"
     v-if="showForm"
     :before-close="handleClose"
+    @close="$emit('close')"
   >
     <el-form :model="query" :rules="rules" :ref="name" label-width="100px">
       <div class="form-item" v-for="(field, index) in fields" :key="`form-item${ index }`" >

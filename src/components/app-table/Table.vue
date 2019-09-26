@@ -4,7 +4,7 @@
     <search :fields="data.params" v-model="query" v-if="data.params.length!==0">
       <template slot="button">
         <!-- 默认查询按钮 -->
-        <el-button type="primary" icon="el-icon-search" @click="doSearch">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
         <!-- @slot 按钮扩展插槽 -->
         <slot name="search">
         </slot>
@@ -174,6 +174,11 @@ export default {
         return this.data.beforeRequest(options);
       }
       return options;
+    },
+    search () {
+      this.pagination.page = 1
+      this.pagination.limit = 20
+      this.doSearch()
     },
     doSearch() {
       const config = this.data;

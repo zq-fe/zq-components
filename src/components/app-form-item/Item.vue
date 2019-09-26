@@ -45,7 +45,8 @@
     <!-- 下拉列表 -->
     <el-select
       v-if="fieldItem.type == 'select'"
-      v-model.number="inputValue"
+      v-model="inputValue"
+      :multiple="fieldItem.multiple"
       :disabled="fieldItem.disabled"
       :placeholder="fieldItem.placeholder"
       clearable
