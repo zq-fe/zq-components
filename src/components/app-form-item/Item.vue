@@ -2,15 +2,15 @@
   <el-form-item class="app-form-item" v-if="field.display !== false" :style="{ ...field.style }" :prop="fieldItem.name" :label="showLabel ? fieldItem.label : ''">
     <!-- 日期组件 -->
     <el-date-picker
-      v-if="fieldItem.type == 'daterange'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
-      type="daterange"
-      range-separator="至"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期"
-      valueat="yyyy-MM-dd"
-      value-format="yyyy-MM-dd"
+        v-if="fieldItem.type == 'daterange'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
+        type="daterange"
+        range-separator="至"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+        valueat="yyyy-MM-dd"
+        value-format="yyyy-MM-dd"
     />
     
     <!-- 下来远程搜索  -->
@@ -44,92 +44,92 @@
     
     <!-- 下拉列表 -->
     <el-select
-      v-if="fieldItem.type == 'select'"
-      v-model="inputValue"
-      :multiple="fieldItem.multiple"
-      :disabled="fieldItem.disabled"
-      :placeholder="fieldItem.placeholder"
-      clearable
+        v-if="fieldItem.type == 'select'"
+        v-model="inputValue"
+        :multiple="fieldItem.multiple"
+        :disabled="fieldItem.disabled"
+        :placeholder="fieldItem.placeholder"
+        clearable
     >
       <el-option
-        v-for="item in fieldItem.data"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
+          v-for="item in fieldItem.data"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
       />
     </el-select>
     
     <!-- 文本类型， 字符串 -->
     <el-input
-      v-if="fieldItem.type == 'text'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
-      :placeholder="fieldItem.placeholder"
-      :maxlength="fieldItem.maxlength"
-      class="input"
-      :clearable="true"
+        v-if="fieldItem.type == 'text'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
+        :placeholder="fieldItem.placeholder"
+        :maxlength="fieldItem.maxlength"
+        class="input"
+        :clearable="true"
     />
     
     <!-- 文本类型， 数字 -->
     <el-input
-      v-if="fieldItem.type == 'number'"
-      v-model.number="inputValue"
-      :rows="fieldItem.rows"
-      :disabled="fieldItem.disabled"
-      :placeholder="fieldItem.placeholder"
-      class="input"
-      :clearable="true"
+        v-if="fieldItem.type == 'number'"
+        v-model.number="inputValue"
+        :rows="fieldItem.rows"
+        :disabled="fieldItem.disabled"
+        :placeholder="fieldItem.placeholder"
+        class="input"
+        :clearable="true"
     />
     
     <!-- 文本类型， 文本域 -->
     <el-input
-      v-if="fieldItem.type == 'textarea'"
-      v-model="inputValue"
-      :rows="fieldItem.rows"
-      :disabled="fieldItem.disabled"
-      :placeholder="fieldItem.placeholder"
-      :maxlength="fieldItem.maxlength"
-      type="textarea"
-      class="input"
-      :clearable="true"
+        v-if="fieldItem.type == 'textarea'"
+        v-model="inputValue"
+        :rows="fieldItem.rows"
+        :disabled="fieldItem.disabled"
+        :placeholder="fieldItem.placeholder"
+        :maxlength="fieldItem.maxlength"
+        type="textarea"
+        class="input"
+        :clearable="true"
     />
     
     <!-- 自定义组件， 标签  -->
     <tag
-      v-if="fieldItem.type == 'tag'"
-      :options="inputValue || []"
-      :label-key="fieldItem.label"
-      :value-key="fieldItem.value"
+        v-if="fieldItem.type == 'tag'"
+        :options="inputValue || []"
+        :label-key="fieldItem.label"
+        :value-key="fieldItem.value"
     />
     
     <!-- 自定义组件， 标签  -->
     <tag-select
-      v-if="fieldItem.type == 'tag-select'"
-      v-model="inputValue"
-      :options="fieldItem.data"
-      :label-key="fieldItem.labelKey"
-      :value-key="fieldItem.valueKey"
+        v-if="fieldItem.type == 'tag-select'"
+        v-model="inputValue"
+        :options="fieldItem.data"
+        :label-key="fieldItem.labelKey"
+        :value-key="fieldItem.valueKey"
     />
     
     <!-- 自定义组件， 音频播放  -->
     <audio
-      v-if="fieldItem.type == 'audio'"
-      :src="inputValue"
-      controlsList="nodownload"
-      controls
-      autoplay
+        v-if="fieldItem.type == 'audio'"
+        :src="inputValue"
+        controlsList="nodownload"
+        controls
+        autoplay
     />
     
     <!-- 自定义组件，单选框  -->
     <el-radio-group
-      v-if="fieldItem.type === 'radio-group'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
+        v-if="fieldItem.type === 'radio-group'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
     >
       <el-radio
-        v-for="item in fieldItem.data"
-        :key="item.value"
-        :label="item.value"
+          v-for="item in fieldItem.data"
+          :key="item.value"
+          :label="item.value"
       >
         {{ item.label }}
       </el-radio>
@@ -137,16 +137,16 @@
     
     <!-- 自定义组件，复选框 单选  -->
     <el-checkbox-group
-      v-if="fieldItem.type === 'checkbox-group-single'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
-      @change="singleHandler"
+        v-if="fieldItem.type === 'checkbox-group-single'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
+        @change="singleHandler"
     >
       <el-checkbox
-        v-if="showSubs"
-        v-for="item in fieldItem.data"
-        :key="'checkout-item-single-' + item.value"
-        :label="item.value"
+          v-if="showSubs"
+          v-for="item in fieldItem.data"
+          :key="'checkout-item-single-' + item.value"
+          :label="item.value"
       >
         {{ item.label }}
       </el-checkbox>
@@ -154,14 +154,14 @@
     
     <!-- 自定义组件，复选框 多选  -->
     <el-checkbox-group
-      v-if="fieldItem.type === 'checkbox-group'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
+        v-if="fieldItem.type === 'checkbox-group'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
     >
       <el-checkbox
-        v-for="item in fieldItem.data"
-        :key="'checkout-item' + item.value"
-        :label="item.value"
+          v-for="item in fieldItem.data"
+          :key="'checkout-item' + item.value"
+          :label="item.value"
       >
         {{ item.label }}
       </el-checkbox>
@@ -169,35 +169,35 @@
     
     <!-- 图片上传 -->
     <image-upload
-      v-if="fieldItem.type === 'image-upload'"
-      v-model="inputValue"
-      :suffix="['jpg', 'png', 'jpeg']"
-      :multiple="fieldItem.multiple"
-      :disabled="fieldItem.disabled"
-      class="app-audio-upload"
+        v-if="fieldItem.type === 'image-upload'"
+        v-model="inputValue"
+        :suffix="['jpg', 'png', 'jpeg']"
+        :multiple="fieldItem.multiple"
+        :disabled="fieldItem.disabled"
+        class="app-audio-upload"
     />
     
     <!-- 音频文件上传 -->
     <audio-upload
-      v-if="fieldItem.type === 'audio-upload'"
-      v-model="inputValue"
-      :suffix="fieldItem.suffix"
-      :disabled="fieldItem.disabled"
-      class="zq-upload"
+        v-if="fieldItem.type === 'audio-upload'"
+        v-model="inputValue"
+        :suffix="fieldItem.suffix"
+        :disabled="fieldItem.disabled"
+        class="zq-upload"
     />
     
     <!-- switch 开关 -->
     <el-switch
-      v-if="fieldItem.type === 'switch'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
+        v-if="fieldItem.type === 'switch'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
     />
     
     <!-- 枚举选项 -->
     <enum
-      v-if="fieldItem.type === 'enum'"
-      v-model="inputValue"
-      :disabled="fieldItem.disabled"
+        v-if="fieldItem.type === 'enum'"
+        v-model="inputValue"
+        :disabled="fieldItem.disabled"
     />
   </el-form-item>
 </template>
@@ -293,9 +293,8 @@
           const field = this.field;
           const format = field.format;
           const set = field.set;
-          const selectedItems = this.optionsData.filter(v => v.value === value);
-          
-          this.selectedOptionItem = selectedItems.length > 0 ? selectedItems[0] : {};
+          const selectedItem = this.optionsData.filter(v => v.value === value);
+          this.selectedOptionItem = selectedItem.length > 0 ? selectedItem[0] : {};
           if (format) {
             /**
              * 修改表单项值回调 v-model
@@ -419,7 +418,7 @@
                 playUrl: data[playUrl],
                 value: data[value]}
             ];
-            this.optionsData = [data];
+            this.optionsData = this.fieldItem.data;
           } else {
             this.fieldItem.data = []
           }
