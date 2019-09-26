@@ -416,7 +416,7 @@
               {
                 key: 0,
                 label: data[label],
-                playUrl: o[playUrl],
+                playUrl: data[playUrl],
                 value: data[value]}
             ];
             this.optionsData = data;
