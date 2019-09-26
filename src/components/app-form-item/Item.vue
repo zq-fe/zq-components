@@ -419,7 +419,7 @@
                 playUrl: data[playUrl],
                 value: data[value]}
             ];
-            this.optionsData = data;
+            this.optionsData = [data];
           } else {
             this.fieldItem.data = []
           }
