@@ -133,6 +133,7 @@ export default {
       loading: false,
       query: {},
       dataList: [],
+      searchTimer: 0,
       pagination: {
         pageSize: 20,
         page: 1,
@@ -201,7 +202,7 @@ export default {
           url,
           query
         });
-      }, 1000)
+      }, 500)
     },
     /**
      * 发起搜索查询
