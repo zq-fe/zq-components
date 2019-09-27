@@ -22,10 +22,10 @@ export default {
   mixins: [Mixins],
   computed: {
     textLength () {
-      return record[column.name].length
+      return this.record[this.column.name].length
     },
     text () {
-      return record[column.name] || ''
+      return this.record[this.column.name] || ''
     }
   }
 }
