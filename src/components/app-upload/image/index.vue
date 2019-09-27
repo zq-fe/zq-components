@@ -3,12 +3,12 @@
     <div v-if="multiple" class="app-audio-upload">
       <div v-for="(item,index) in imageUrl" :key="index" class="preview">
         <el-image class="avatar" :src="item" :preview-src-list="imageUrl" />
-        <i @click="handleRemove(item)" class="el-icon-delete"></i>
+        <i v-if="!disabled" @click="handleRemove(item)" class="el-icon-delete"></i>
       </div>
     </div>
     <div v-else class="preview">
-      <el-image v-if="imageUrl" class="avatar" :src="imageUrl" :preview-src-list="[imageUrl]" />
-      <i @click="handleRemoveSingle" class="el-icon-delete"></i>
+      <el-image v-if="imageUrl.toString()" class="avatar" :src="imageUrl.toString()" :preview-src-list="[imageUrl]" />
+      <i v-if="!disabled" @click="handleRemoveSingle" class="el-icon-delete"></i>
     </div>
     <el-upload
       :show-file-list="false"
@@ -192,7 +192,7 @@ export default {
   position: relative;
   margin-right: 10px;
   margin-bottom: 10px;
-   i {
+   .el-icon-delete {
     position: absolute;
     left: 34px;
     color: #fff;
@@ -201,7 +201,7 @@ export default {
     font-size: 24px;
   }
   &:hover {
-    i {
+    .el-icon-delete {
       display: block;
       cursor: pointer;
     }

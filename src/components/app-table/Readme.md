@@ -11,11 +11,6 @@
       </template>
       <!-- 特殊列slot  -->
       <template slot="column">
-        <el-table-column label="标签">
-          <template slot-scope="scope">
-            {{ scope.row.tags | tag(tagList)}}
-          </template>
-        </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-link type="primary" @click="updateAccount(scope.row)">编辑</el-link>
