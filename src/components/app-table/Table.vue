@@ -192,8 +192,23 @@ export default {
         offset: pagination.offset,
         cnt: pagination.cnt
       };
-      
       this.loading = true;
+      const searchTimer = this.searchTimer;
+      searchTimer && window.clearTimeout(searchTimer);
+      // 解决 ES 数据同步问题 （间隔1秒）
+      this.searchTimer = window.setTimeout(() => {
+        this.searchRequest({
+          url,
+          query
+        });
+      }, 1000)
+    },
+    /**
+     * 发起搜索查询
+     * @param options
+     */
+    searchRequest(options) {
+      const { url, query } = options;
       const requestOptions = {
         url,
         method: 'get',
