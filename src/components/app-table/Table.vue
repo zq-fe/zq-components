@@ -202,7 +202,7 @@ export default {
           url,
           query
         });
-      }, 500)
+      }, 300)
     },
     /**
      * 发起搜索查询
