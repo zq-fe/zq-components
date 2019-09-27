@@ -1,14 +1,33 @@
 <template>
-  <div class="cell-text">
-    {{ record[column.name] | filter(record, column) }}
+<div>
+  <div v-if="textLength < 10" class="cell-text">
+    {{ text | filter(record, column) }}
   </div>
+  <el-popover
+    v-else
+    placement="top-start"
+    width="200"
+    trigger="hover"
+    :content="text">
+    <span slot="reference">{{ text.substring(0,9) }}...</span>
+  </el-popover>
+</div>
 </template>
 
 <script>
 import Mixins from '../mixins';
 export default {
   name: 'ColumnCellText',
-  mixins: [Mixins]
+  mixins: [Mixins],
+  computed: {
+    textLength () {
+      const name = this.record[this.column.name]
+      return typeof name === 'string' ? name.length : 1
+    },
+    text () {
+      return this.record[this.column.name]
+    }
+  }
 }
 </script>
 
