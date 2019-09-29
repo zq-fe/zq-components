@@ -8,5 +8,5 @@ const OSS_UPLOAD_CONCONFIG = {
   directory: process.env.ENV_CONFIG === 'prod' ? 'feed/web-admin-offline' : 'feed/web-admin-offline',
   accessId: process.env.VUE_APP_UPLOAD_OSS_ACCESSID,
   accessKey: process.env.VUE_APP_UPLOAD_OSS_ACCESSKEY
-}
+};
 export default OSS_UPLOAD_CONCONFIG
