@@ -75,8 +75,6 @@ export default {
   },
   data() {
     return {
-      srcList: [],
-      fileList: [],
       dir: OssConfig.directory,
       base: OssConfig.baseUrl,
       bucket: OssConfig.bucket,
@@ -89,14 +87,13 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      this.fileList.forEach((item, index) => {
+      this.imageUrl.forEach((item, index) => {
         if (file === item) {
-          this.fileList.splice(index, 1);
+          this.imageUrl.splice(index, 1);
         }
       });
     },
     handleRemoveSingle() {
-      this.srcList = []
       this.imageUrl = ''
     },
     generateSign() {
@@ -135,10 +132,12 @@ export default {
     },
     change(url) {
       if (this.multiple) {
-        this.fileList.push(url)
-        this.imageUrl = this.fileList
+        if (this.imageUrl && this.imageUrl.length && this.imageUrl.length > 0) {
+          this.imageUrl.push(url)
+        } else {
+          this.imageUrl = [url]
+        }
       } else {
-        this.srcList = [url]
         this.imageUrl =  url
       }
       this.$emit("change", this.imageUrl);
