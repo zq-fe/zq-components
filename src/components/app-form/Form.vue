@@ -108,11 +108,12 @@ export default {
       const fields = this.fields;
       const rules = {};
       fields.forEach((v, i) => {
-        if (v.required) {
+        const required = v.required;
+        if (required) {
           const name = v.name;
           rules[name] = [
             {
-              required: true,
+              required: typeof required === 'boolean' ? required : required(),
               message: '请输入' + v.label
             }
           ]
