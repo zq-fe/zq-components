@@ -153,7 +153,7 @@ export default {
     this.initParams();
   },
   mounted() {
-    this.doSearch();
+    this.doSearch(0);
   },
   methods: {
     initParams() {
