@@ -142,17 +142,46 @@ export default {
         }
       }
       this.sheetData = this.formatData(this.dataList);
+      this.sheetData.unshift(sheetHeaderName);
       this.option.fileName = "excel";
-      this.option.datas = [
-        {
-          sheetData: this.sheetData,
-          sheetName: "sheet",
-          sheetHeader: sheetHeaderName
+      function processRow(row) {
+        let finalVal = "";
+        for (let j = 0; j < row.length; j++) {
+          let innerValue = row[j] === null ? "" : row[j].toString();
+          if (row[j] instanceof Date) {
+            innerValue = row[j].toLocaleString();
+          }
+          let result = innerValue.replace(/"/g, '""');
+          if (result.search(/("|,|\n)/g) >= 0) result = '"' + result + '"';
+          if (j > 0) finalVal += ",";
+          finalVal += result;
         }
-      ];
+        return finalVal;
+      }
+      let csvString = this.sheetData
+        .map(function(item) {
+          return processRow(item);
+        })
+        .join("\n");
+      let blob = new Blob(["\uFEFF" + csvString], {
+        type: "text/csv;charset=utf-8;"
+      });
+
+      let a = document.createElement("a");
+      const fileName = (this.$route.meta && this.$route.meta.title) || '导出表格'
+      a.download = fileName + ".csv"; 
+      a.href = URL.createObjectURL(blob);
+      a.click();
+      // this.option.datas = [
+      //   {
+      //     sheetData: this.sheetData,
+      //     sheetName: "sheet",
+      //     sheetHeader: sheetHeaderName
+      //   }
+      // ];
       this.loading = false;
-      var toExcel = new ExportJsonExcel(this.option); //new
-      toExcel.saveExcel(); //保
+      // var toExcel = new ExportJsonExcel(this.option); //new
+      // toExcel.saveExcel(); //保
     },
     exportToExcel() {
       this.dataList = [];
