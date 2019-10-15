@@ -179,9 +179,9 @@ export default {
     search () {
       this.pagination.page = 1
       this.pagination.limit = 20
-      this.doSearch()
+      this.doSearch(0)
     },
-    doSearch() {
+    doSearch(delay = 1000) {
       const config = this.data;
       const url = config.url;
       const pagination = this.pagination;
@@ -202,7 +202,7 @@ export default {
           url,
           query
         });
-      }, 1000)
+      }, delay);
     },
     /**
      * 发起搜索查询
