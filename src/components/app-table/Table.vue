@@ -8,6 +8,8 @@
         <!-- @slot 按钮扩展插槽 -->
         <slot name="search">
         </slot>
+        <!-- @slot 导出 -->
+        <AppExcel :query="query" :data="data" :pagination="pagination" />
       </template>
     </search>
     <!-- 列表 -->
@@ -79,6 +81,7 @@
 import Vue from 'vue';
 import Search from './search/Index';
 import ColumnCell from './column-cell';
+import AppExcel from '../app-excel';
 import './filters';
 /**
  * table 组件模板.
@@ -88,7 +91,8 @@ export default {
   name: 'AppTable',
   components: {
     Search,
-    ColumnCell
+    ColumnCell,
+    AppExcel
   },
   props: {
     /**
