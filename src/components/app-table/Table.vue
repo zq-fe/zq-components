@@ -167,12 +167,12 @@ export default {
     handleSizeChange(size) {
       this.pagination.pageSize = size;
       this.pagination.cnt = size;
-      this.doSearch();
+      this.doSearch(0);
     },
     handlePageChange(page) {
       this.pagination.page = page;
       this.pagination.offset = (page - 1) * this.pagination.pageSize;
-      this.doSearch();
+      this.doSearch(0);
     },
     beforeRequest(options) {
       if (typeof this.data.beforeRequest === 'function') {
