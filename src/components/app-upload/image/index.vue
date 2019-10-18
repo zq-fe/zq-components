@@ -54,6 +54,12 @@ export default {
       default() {
         return false
       }
+    },
+    oss: {
+      type: Object,
+      default() {
+        return {}
+      }
     }
   },
   computed: {
@@ -68,16 +74,15 @@ export default {
         this.$emit("input", val);
       },
       get() {
-
         return this.value;
       }
     }
   },
   data() {
     return {
-      dir: OssConfig.directory,
-      base: OssConfig.baseUrl,
-      bucket: OssConfig.bucket,
+      dir: this.oss.directory || OssConfig.directory,
+      base: this.oss.baseUrl || OssConfig.baseUrl,
+      bucket: this.oss.bucket || OssConfig.bucket,
       accessId: OssConfig.accessId,
       accessKey: OssConfig.accessKey
     };
@@ -87,11 +92,13 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      this.imageUrl.forEach((item, index) => {
+      let imageArr = this.imageUrl.slice()
+      imageArr.forEach((item, index) => {
         if (file === item) {
-          this.imageUrl.splice(index, 1);
+          imageArr.splice(index, 1);
         }
       });
+      this.imageUrl = imageArr
     },
     handleRemoveSingle() {
       this.imageUrl = ''
@@ -133,7 +140,9 @@ export default {
     change(url) {
       if (this.multiple) {
         if (this.imageUrl && this.imageUrl.length && this.imageUrl.length > 0) {
-          this.imageUrl.push(url)
+          const imageArr = this.imageUrl.slice()
+          imageArr.push(url)
+          this.imageUrl = imageArr
         } else {
           this.imageUrl = [url]
         }

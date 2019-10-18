@@ -174,6 +174,7 @@
         :suffix="['jpg', 'png', 'jpeg']"
         :multiple="fieldItem.multiple"
         :disabled="fieldItem.disabled"
+        :oss ="fieldItem.oss"
         class="app-audio-upload"
     />
     
@@ -232,7 +233,8 @@
             type: 'text',
             label: '',
             placeholder: '',
-            data: []
+            data: [],
+            oss: {}
           }
         }
       },
@@ -305,7 +307,7 @@
             this.$emit('input', format(value));
           } else if (set) {
             // 定制 set 方法，特殊字段处理
-            this.$emit('input', set(value));
+            this.$emit('input', set(value, this.value));
           } else {
             this.$emit('input', value)
           }
