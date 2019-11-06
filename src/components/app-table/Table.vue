@@ -13,7 +13,20 @@
       </template>
     </search>
     <!-- 列表 -->
-    <el-table :data="dataList" stripe border style="width: 100%;margin-top: 9px" v-loading="loading">
+    <el-table
+      :data="dataList"
+      stripe
+      border
+      style="width: 100%;margin-top: 9px"
+      v-loading="loading"
+      @selection-change="selectionChange"
+    >
+      <el-table-column
+          v-if="selected"
+          type="selection"
+          width="55"
+      />
+    
       <el-table-column
         v-for="column in columns"
         :key="column.title"
@@ -120,6 +133,15 @@ export default {
       default() {
         return true;
       }
+    },
+    /**
+     *  是否支持选择列
+     */
+    selected: {
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   computed: {
@@ -135,6 +157,7 @@ export default {
   data() {
     return {
       loading: false,
+      selection: [],
       query: {},
       dataList: [],
       searchTimer: 0,
@@ -156,6 +179,14 @@ export default {
     this.doSearch(0);
   },
   methods: {
+    selectionChange(selection){
+      this.selection = selection;
+      /**
+       * 选择列时，触发selected事件，参数为选择的列
+       * @type object
+       */
+      this.$emit('selected', selection);
+    },
     initParams() {
       const query = {};
       this.data.params.map(f => {

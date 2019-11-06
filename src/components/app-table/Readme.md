@@ -4,7 +4,7 @@
 <template>
   <div>
     <!-- 注入表格 -->
-    <app-table :data="dataConfig" :show-options="false" ref="apptable">
+    <app-table :data="dataConfig" :show-options="false" ref="apptable" :selected="true">
       <!-- 查询条件 slot -->
       <template slot="search">
         <el-button type="primary" icon="el-icon-plus" @click="addAccount">创建账户</el-button>
