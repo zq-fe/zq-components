@@ -25,7 +25,7 @@ export default {
       return typeof name === 'string' ? name.length : 1
     },
     text () {
-      return this.record[this.column.name]
+      return this.record[this.column.name] || '-';
     }
   }
 }
