@@ -14,23 +14,24 @@
     </search>
     <!-- 列表 -->
     <el-table
-      :data="dataList"
-      stripe
-      border
-      style="width: 100%;margin-top: 9px"
-      v-loading="loading"
-      @selection-change="selectionChange"
+        :data="dataList"
+        stripe
+        border
+        style="width: 100%;margin-top: 9px"
+        v-loading="loading"
+        ref="table"
+        @select="selectionChange"
     >
       <el-table-column
           v-if="selected"
           type="selection"
           width="55"
       />
-    
+      
       <el-table-column
-        v-for="column in columns"
-        :key="column.title"
-        :label="column.title"
+          v-for="column in columns"
+          :key="column.title"
+          :label="column.title"
       >
         <template slot-scope="scope">
           <column-cell :column="column" :record="scope.row" />
@@ -41,32 +42,32 @@
       <el-table-column label="操作" v-if="showOptions">
         <template slot-scope="scope">
           <el-link
-            type="primary"
-            v-if="actions['preview']"
-            @click="previewHandler(scope.row)"
+              type="primary"
+              v-if="actions['preview']"
+              @click="previewHandler(scope.row)"
           >
             查看
           </el-link>
           <el-link
-            type="primary"
-            v-if="actions['update']"
-            @click="updateHandler(scope.row)"
+              type="primary"
+              v-if="actions['update']"
+              @click="updateHandler(scope.row)"
           >
             编辑
           </el-link>
           <el-link
-            type="primary"
-            v-if="actions['delete']"
-            :disabled="actions.delete.disabled ? actions.delete.disabled(scope.row) : false"
-            @click="deleteHandler(scope.row)"
+              type="primary"
+              v-if="actions['delete']"
+              :disabled="actions.delete.disabled ? actions.delete.disabled(scope.row) : false"
+              @click="deleteHandler(scope.row)"
           >
             删除
           </el-link>
           <el-link
-            type="primary"
-            v-if="actions['confirm']"
-            :disabled="actions.confirm.disabled ? actions.confirm.disabled(scope.row) : false"
-            @click="confirmHandler(scope.row)"
+              type="primary"
+              v-if="actions['confirm']"
+              :disabled="actions.confirm.disabled ? actions.confirm.disabled(scope.row) : false"
+              @click="confirmHandler(scope.row)"
           >
             {{actions.confirm.text}}
           </el-link>
@@ -78,14 +79,14 @@
     <!-- 分页 -->
     <div v-if="pagination" class="page-pagination">
       <el-pagination
-        :page-sizes="pagination.pageSizes"
-        :page-size.sync="pagination.pageSize"
-        :current-page="pagination.page"
-        :total="pagination.total"
-        background
-        layout="total, sizes, prev, pager, next, jumper"
-        @size-change="handleSizeChange"
-        @current-change="handlePageChange"
+          :page-sizes="pagination.pageSizes"
+          :page-size.sync="pagination.pageSize"
+          :current-page="pagination.page"
+          :total="pagination.total"
+          background
+          layout="total, sizes, prev, pager, next, jumper"
+          @size-change="handleSizeChange"
+          @current-change="handlePageChange"
       />
     </div>
   </div>
@@ -142,6 +143,15 @@ export default {
       default() {
         return false
       }
+    },
+    /**
+     * 是否单选, 默认多选
+     */
+    single: {
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   computed: {
@@ -179,7 +189,9 @@ export default {
     this.doSearch(0);
   },
   methods: {
-    selectionChange(selection){
+    selectionChange(selection, row){
+      this.single && this.$refs.table.clearSelection();
+      this.single && this.$refs.table.toggleRowSelection(row);
       this.selection = selection;
       /**
        * 选择列时，触发selected事件，参数为选择的列
