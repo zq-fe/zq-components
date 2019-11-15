@@ -1,6 +1,6 @@
 {
   "name": "zq-components",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "description": "table and form components for admin platform",
   "main": "src/index.js",
   "repository": {

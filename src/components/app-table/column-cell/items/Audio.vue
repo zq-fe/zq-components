@@ -1,5 +1,5 @@
 <template>
-  <app-audio :url="url" />
+  <app-audio :url="urls.length && urls[0].url" />
 </template>
 
 <script>
