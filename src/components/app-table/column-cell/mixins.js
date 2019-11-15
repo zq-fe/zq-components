@@ -26,7 +26,7 @@ export default {
      */
     urls: {
       type: Array,
-      required: true,
+      required: false,
       default() {
         return [];
       }
