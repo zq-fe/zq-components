@@ -1,6 +1,6 @@
 <template>
   <div class="cell-link">
-    <a :href="url" target="_blank">
+    <a :href="url" target="_blank" v-for="url in urls">
       <el-link type="primary"> {{ record[column.name] | filter(record, column) }} </el-link>
     </a>
   </div>

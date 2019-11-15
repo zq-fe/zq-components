@@ -24,8 +24,8 @@ export default {
     /**
      * 字段对应url
      */
-    url: {
-      type: String,
+    urls: {
+      type: Array,
       required: true,
       default() {
         return '';

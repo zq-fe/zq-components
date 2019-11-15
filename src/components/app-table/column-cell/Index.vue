@@ -1,13 +1,13 @@
 <template>
   <div class="app-table-column-cell">
     <!--  图片类型 -->
-    <image-item v-if="type === 'image'" :url="url" :record="record" :column="column" />
+    <image-item v-if="type === 'image'" :urls="urls" :record="record" :column="column" />
     <!--  图片类型 -->
-    <link-item v-if="type ==='link'" :url="url" :record="record" :column="column" />
+    <link-item v-if="type ==='link'" :urls="urls" :record="record" :column="column" />
     <!--  图片类型 -->
-    <text-item v-if="type === 'text'" :url="url" :record="record" :column="column" />
+    <text-item v-if="type === 'text'" :urls="urls" :record="record" :column="column" />
     <!--  图片类型 -->
-    <audio-item v-if="type === 'audio'" :url="url" :record="record" :column="column" />
+    <audio-item v-if="type === 'audio'" :urls="urls" :record="record" :column="column" />
   </div>
 </template>
 
@@ -46,15 +46,16 @@ export default {
     type() {
       return this.column.type || 'text';
     },
-    url() {
+    urls() {
       const record = this.record;
       const column = this.column;
       const { getUrl, name } = column;
       const text = record[name];
       if (getUrl) {
-        return getUrl(text, record, column);
+        const url = getUrl(text, record, column);
+        return typeof url === 'String' ? [url] : url;
       }
-      return text + '';
+      return [text + ''];
     }
   }
 }
