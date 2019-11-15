@@ -1,7 +1,7 @@
 <template>
   <div class="cell-link">
-    <a :href="url" target="_blank" v-for="url in urls">
-      <el-link type="primary"> {{ record[column.name] | filter(record, column) }} </el-link>
+    <a :href="item.url" target="_blank" v-for="item in urls" :key="item.url">
+      <el-link type="primary"> {{item.text}} </el-link>
     </a>
   </div>
 </template>

@@ -53,9 +53,9 @@ export default {
       const text = record[name];
       if (getUrl) {
         const url = getUrl(text, record, column);
-        return typeof url === 'String' ? [url] : url;
+        return typeof url === 'String' ? [{url, text}] : url;
       }
-      return [text + ''];
+      return [{url: text, text}];
     }
   }
 }
