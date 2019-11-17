@@ -231,7 +231,8 @@ export default {
     search () {
       this.pagination.page = 1
       this.pagination.limit = 20
-      this.doSearch(0)
+      this.doSearch(0);
+      this.$emit('selected', []);
     },
     doSearch(delay = 1000) {
       const config = this.data;
