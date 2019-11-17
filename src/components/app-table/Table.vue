@@ -190,8 +190,13 @@ export default {
   },
   methods: {
     selectionChange(selection, row){
-      this.single && this.$refs.table.clearSelection();
-      this.single && this.$refs.table.toggleRowSelection(row);
+      if (selection && selection.length) {
+        this.single && this.$refs.table.clearSelection();
+        this.single && this.$refs.table.toggleRowSelection(row);
+      } else {
+        this.single && this.$refs.table.toggleRowSelection(row, false);
+      }
+      
       this.selection = selection;
       /**
        * 选择列时，触发selected事件，参数为选择的列
