@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import request from './request'
 import AppTable from '../components/app-table'
 import AppForm from '../components/app-form'
+import AppButton from '../components/app-button'
 import AppAudio from '../components/app-audio'
 import AppFormItem from '../components/app-form-item'
 import { ImageUpload, AudioUpload } from '../components/app-upload'
@@ -16,6 +17,7 @@ const components = [
   AppTable,
   AppFormItem,
   AppAudio,
+  AppButton,
   ImageUpload,
   AudioUpload
 ]
