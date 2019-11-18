@@ -9,12 +9,15 @@ import AppTable from '../components/app-table'
 import AppForm from '../components/app-form'
 import AppAudio from '../components/app-audio'
 import AppFormItem from '../components/app-form-item'
+import { ImageUpload, AudioUpload } from '../components/app-upload'
 Vue.prototype.request = request
 const components = [
   AppForm,
   AppTable,
   AppFormItem,
-  AppAudio
+  AppAudio,
+  ImageUpload,
+  AudioUpload
 ]
 components.forEach(component => {
   Vue.component(component.name, component);
