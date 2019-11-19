@@ -371,7 +371,7 @@
                 label: o[label],
                 value: o[value]
               };
-              if (disableOptions.includes(o[value])) {
+              if (disableOptions && disableOptions.includes(o[value])) {
                 item.disabled = true;
               }
               return item;
