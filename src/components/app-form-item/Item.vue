@@ -147,6 +147,7 @@
           v-for="item in fieldItem.data"
           :key="'checkout-item-single-' + item.value"
           :label="item.value"
+          :disabled="item.disabled"
       >
         {{ item.label }}
       </el-checkbox>
@@ -162,6 +163,7 @@
           v-for="item in fieldItem.data"
           :key="'checkout-item' + item.value"
           :label="item.value"
+          :disabled="item.disabled"
       >
         {{ item.label }}
       </el-checkbox>
@@ -352,6 +354,8 @@
        */
       initDataList() {
         const field = this.field;
+        // 禁止选择项 default false， 禁止选择项的
+        const disableOptions = field.disableOptions;
         const { url, label, value, params } = field.remote || field.data || {};
         if (url) {
           this.loading = true;
@@ -363,10 +367,14 @@
             const dataList = res.data.items || [];
             this.optionsData = dataList.slice();
             this.field.data = dataList.map(o => {
-              return {
+              const item = {
                 label: o[label],
                 value: o[value]
+              };
+              if (disableOptions && disableOptions.includes(o[value])) {
+                item.disabled = true;
               }
+              return item;
             });
           }).catch((e) => {
             this.loading = false;
@@ -406,12 +414,13 @@
           if (dataList && dataList.length > 0) {
             let i = 0;
             this.fieldItem.data = dataList.map(o => {
-              return {
+              const item = {
                 key: i++,
                 label: o[label],
                 playUrl: o[playUrl],
                 value: o[value]
-              }
+              };
+              return item;
             });
           } else if (data[value]){
             this.fieldItem.data = [
