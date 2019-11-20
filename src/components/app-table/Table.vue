@@ -35,6 +35,8 @@
       >
         <template slot-scope="scope">
           <column-cell :column="column" :record="scope.row" />
+          <!-- 列占位插槽 -->
+          <slot v-if="column.type === 'slot'" :name="column.name" :row="scope.row" />
         </template>
       </el-table-column>
       <!-- @slot 列扩展插槽, 配合actions： preview、update、delete、confirm，对应配置项为 { url: 'url', method, 'id', disabled: () => {} } -->

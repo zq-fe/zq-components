@@ -8,6 +8,8 @@
     <text-item v-if="type === 'text'" :record="record" :column="column" />
     <!--  音频类型 -->
     <audio-item v-if="type === 'audio'" :urls="urls" :record="record" :column="column" />
+    <!-- 插槽 -->
+    <slot :name="column.name" :row="record"/>
   </div>
 </template>
 
