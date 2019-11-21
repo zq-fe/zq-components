@@ -25,7 +25,8 @@ export default {
       return typeof name === 'string' ? name.length : 1
     },
     text () {
-      return this.record[this.column.name] || '-';
+      const val = this.record[this.column.name];
+      return val === undefined ?  '-' : val;
     }
   }
 }
