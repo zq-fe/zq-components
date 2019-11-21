@@ -55,7 +55,7 @@
         const text = record[name];
         if (getUrl) {
           const url = getUrl(text, record, column);
-          return typeof url === 'String' ? [{url, text}] : url;
+          return typeof url === 'string' ? [{url, text}] : url;
         }
         return [{url: text, text}];
       }
