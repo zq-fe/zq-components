@@ -55,7 +55,7 @@
         const text = record[name];
         if (getUrl) {
           const urlConfig = getUrl(text, record, column);
-          return typeof urlConfig === 'string' ? [{url: text, text: urlConfig}] : urlConfig;
+          return typeof urlConfig === 'string' ? [{ url: urlConfig }] : urlConfig;
         }
         return [{url: text, text}];
       }

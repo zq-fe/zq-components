@@ -1,24 +1,24 @@
 <template>
   <el-popover
     placement="left"
-    :disabled="urls.length === 0"
+    :disabled="imgSrcs.length === 0"
     trigger="hover"
   >
     <el-row :gutter="10">
       <el-col
-        v-for="src in urls"
-        :span="24 / urls.length"
+        v-for="src in imgSrcs"
+        :span="24 / imgSrcs.length"
         :key="src"
       >
         <el-image
           style="width: 150px; height: 300px;"
           :src="src"
-          :preview-src-list="urls">
+          :preview-src-list="imgSrcs">
         </el-image>
       </el-col>
     </el-row>
     <el-button slot="reference">
-      <svg-icon :icon-class="urls.length ? 'has-img' : 'non-img'" />
+      <svg-icon :icon-class="imgSrcs.length ? 'has-img' : 'non-img'" />
     </el-button>
   </el-popover>
 </template>
@@ -29,7 +29,7 @@ export default {
   name: 'ColumnCellImage',
   mixins: [Mixins],
   computed: {
-    urls() {
+    imgSrcs() {
       const me = this;
       const { name } = me.column;
       const urls = me.record[name];
