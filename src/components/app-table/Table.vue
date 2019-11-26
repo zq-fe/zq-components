@@ -159,7 +159,7 @@ export default {
   computed: {
     // 列表数据
     columns() {
-      return this.data.columns.filter(v => typeof v === 'undefined');
+      return this.data.columns.filter(v => typeof v.display === 'undefined' ? true : v.display);
     },
     // 操作 actions： update、delete
     actions() {
