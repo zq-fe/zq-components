@@ -332,6 +332,7 @@
             field.disabled = field.disabled();
           }
           field.placeholder = field.placeholder || field.label;
+          field.remoteConfig = field.remote;
           delete field.remote;
           return field;
         },
@@ -399,7 +400,7 @@
        */
       remoteMethod(keyValue) {
         const field = this.fieldItem;
-        const { url, label, value, params, keyWord, isList, playUrl } = field.remote || {};
+        const { url, label, value, params, keyWord, isList, playUrl } = field.remoteConfig || {};
         const paramsData = {
           ...params,
           [keyWord]: keyValue
