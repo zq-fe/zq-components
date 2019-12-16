@@ -55,7 +55,7 @@ export default {
       const url = this.fileUrl
       const suffix = url && url.substring(url.lastIndexOf('.') + 1)
       let type = ''
-      if (suffix.startsWith('mp3') || suffix.startsWith('m4a')) {
+      if (suffix.startsWith('3gpp') || suffix.startsWith('mp3') || suffix.startsWith('m4a')) {
         type = 'audio'
       }
       if (suffix === 'txt' || suffix === 'zrce2' || suffix === 'lrc') {
