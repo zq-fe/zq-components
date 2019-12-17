@@ -1,5 +1,5 @@
 <template>
-  <el-form-item class="app-form-item" v-if="field.display !== false" :style="{ ...field.style }" :prop="fieldItem.name" :label="showLabel ? fieldItem.label : ''">
+  <el-form-item class="app-form-item" v-if="display" :style="{ ...field.style }" :prop="fieldItem.name" :label="showLabel ? fieldItem.label : ''">
     <!-- 日期组件 -->
     <el-date-picker
       v-if="fieldItem.type == 'daterange'"
@@ -280,6 +280,17 @@
       previewPlayUrl() {
         const { getPlayUrl } = this.field;
         return (getPlayUrl && getPlayUrl()) || this.selectedOptionItem.playUrl;
+      },
+      display () {
+        const { display } = this.field;
+        if (typeof display === 'boolean') {
+          return display;
+        }
+        // 支持在 配置项 直接配置 disabled 类型为函数
+        if (display && typeof display === 'function') {
+          return display();
+        }
+        return true
       },
       inputValue: {
         get() {
