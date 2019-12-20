@@ -126,6 +126,7 @@
         v-for="item in fieldItem.data"
         :key="item.value"
         :label="item.value"
+        :disabled="item.disabled"
       >
         {{ item.label }}
       </el-radio>
