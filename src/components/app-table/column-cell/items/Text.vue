@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div v-if="textLength < 10" class="cell-text">
+  <div v-if="textLength < 12" class="cell-text">
     {{ text | filter(record, column) }}
   </div>
   <el-popover
