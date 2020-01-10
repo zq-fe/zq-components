@@ -4,8 +4,10 @@
     <image-item v-if="type === 'image'" :record="record" :column="column" />
     <!--  链接类型 -->
     <link-item v-if="type ==='link'" :urls="urls" :record="record" :column="column" />
-    <!--  文本类型 -->
+    <!--  文本有溢出省略号类型 -->
     <text-item v-if="type === 'text'" :record="record" :column="column" />
+    <!--  文本类型 -->
+    <filter-item v-if="type === 'filter'" :record="record" :column="column" />
     <!--  音频类型 -->
     <audio-item v-if="type === 'audio'" :urls="urls" :record="record" :column="column" />
     <!-- 插槽 -->
@@ -18,13 +20,15 @@
   import TextItem from './items/Text';
   import LinkItem from './items/Link';
   import AudioItem from './items/Audio';
+  import FilterItem from './items/Filter';
   export default {
     name: 'AppTableColumnCell',
     components: {
       ImageItem,
       TextItem,
       LinkItem,
-      AudioItem
+      AudioItem,
+      FilterItem
     },
     props: {
       column: {
