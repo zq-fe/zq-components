@@ -4,7 +4,7 @@
         v-for="(field, index) in fields"
         :showLabel="false"
         :key="`form-item${ index }`"
-        v-model.trim="query[field.name]"
+        v-model="query[field.name]"
         :field="field"
         class="app-form-item"
     />
