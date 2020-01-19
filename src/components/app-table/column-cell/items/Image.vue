@@ -17,8 +17,8 @@
         </el-image>
       </el-col>
     </el-row>
-    <el-button slot="reference">
-      <svg-icon :icon-class="imgSrcs.length ? 'has-img' : 'non-img'" />
+    <el-button v-if="imgSrcs.length" slot="reference">
+      <svg-icon :icon-class="imgSrcs.length ? 'has-img' : ''" />
     </el-button>
   </el-popover>
 </template>
