@@ -2,6 +2,7 @@
   <el-popover
     placement="left"
     :disabled="imgSrcs.length === 0"
+    v-if="imgSrcs.length"
     trigger="hover"
   >
     <el-row :gutter="10">
@@ -18,7 +19,7 @@
       </el-col>
     </el-row>
     <el-button slot="reference">
-      <svg-icon :icon-class="imgSrcs.length ? 'has-img' : 'non-img'" />
+      <svg-icon :icon-class="imgSrcs.length ? 'has-img' : ''" />
     </el-button>
   </el-popover>
 </template>
