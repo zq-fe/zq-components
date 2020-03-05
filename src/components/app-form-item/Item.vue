@@ -48,6 +48,7 @@
       v-model="inputValue"
       :multiple="fieldItem.multiple"
       :disabled="fieldItem.disabled"
+      :isArray="fieldItem.isArray"
       v-bind="fieldItem"
     >
       <el-option
@@ -55,20 +56,6 @@
         :key="item.value"
         :label="item.label"
         :value="item.value"
-      />
-    </el-select>
-    <!-- 下拉列表 -->
-
-    <el-select
-      v-if="fieldItem.type == 'select-array'"
-      v-model="inputValue"
-      v-bind="fieldItem"
-    >
-      <el-option
-        v-for="item in fieldItem.data"
-        :key="item"
-        :label="item"
-        :value="item"
       />
     </el-select>
     <!-- 文本类型， 字符串 -->
@@ -384,7 +371,8 @@
         const field = this.field;
         // 禁止选择项 default false， 禁止选择项的
         const disableOptions = field.disableOptions;
-        const { url, label, value, params, isArray } = field.remote || field.data || {};
+        const isArray = field.isArray
+        const { url, label, value, params } = field.remote || field.data || {};
         if (url) {
           this.loading = true;
           this.request({
@@ -395,7 +383,16 @@
             const dataList = res.data.items || [];
             this.optionsData = dataList.slice();
             if(isArray){
-              this.field.data = dataList;
+              this.field.data = dataList.map(o => {
+              const item = {
+                label: o,
+                value: o
+              };
+              if (disableOptions && disableOptions.includes(o[value])) {
+                item.disabled = true;
+              }
+              return item;
+            });
             } else {
               this.field.data = dataList.map(o => {
               const item = {
