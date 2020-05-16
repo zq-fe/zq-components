@@ -79,7 +79,7 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <div v-if="pagination" class="page-pagination">
+    <div v-if="pagination && !data.noSearch" class="page-pagination">
       <el-pagination
           :page-sizes="pagination.pageSizes"
           :page-size.sync="pagination.pageSize"
@@ -188,7 +188,7 @@ export default {
     this.initParams();
   },
   mounted() {
-    this.doSearch(0);
+    !this.data.noSearch && this.doSearch(0);
   },
   methods: {
     selectionChange(selection, row){
@@ -274,8 +274,12 @@ export default {
       this.request(decoratedRequestOptions).then((res) => {
         this.loading = false;
         const data = res.data;
-        this.dataList = data.items || data.Items;
-        this.pagination.total = data.total || data.Total;
+        if(this.data.noSearch) {
+          this.dataList = [data]
+        } else {
+          this.dataList = data.items || data.Items;
+          this.pagination.total = data.total || data.Total || 0;
+        }
       }).catch(res => {
         this.loading = false;
       });
