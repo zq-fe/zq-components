@@ -41,6 +41,10 @@ export default {
         return ['jpg', 'png']
       }
     },
+    maxsize: {
+      type: Number,
+      default: 5
+    },
     value: {
       type: String,
       default() {
@@ -103,6 +107,12 @@ export default {
       // }
     },
     uploadHandler(upload) {
+      const MAX_SIZE = this.maxsize * 1024 * 1024;
+      if (upload.file.size > MAX_SIZE) {
+          this.showDialog = true;
+          this.$message('文件大小超过限制');
+          return false
+      }
       const file = upload.file
       const fileName = file.name
       const suffix = fileName.substring(fileName.lastIndexOf('.') + 1)

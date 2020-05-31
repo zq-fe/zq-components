@@ -186,6 +186,7 @@
       v-model="inputValue"
       :suffix="fieldItem.suffix"
       :disabled="fieldItem.disabled"
+      :maxsize="fieldItem.maxsize"
       class="zq-upload"
       v-bind="fieldItem"
     />
@@ -372,8 +373,8 @@
         // 禁止选择项 default false， 禁止选择项的
         const disableOptions = field.disableOptions;
         const isArray = field.isArray
-        const { url, label, value, params } = field.remote || field.data || {};
-        if (url) {
+        const { url, label, value, params, noSearch } = field.remote || field.data || {};
+        if (url && !noSearch) {
           this.loading = true;
           this.request({
             url,

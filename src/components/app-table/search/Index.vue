@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="query" :ref="formName" class="app-table-search">
+  <el-form :model="query" :rules="rules" :ref="formName" class="app-table-search">
     <app-form-item
         v-for="(field, index) in fields"
         :showLabel="false"

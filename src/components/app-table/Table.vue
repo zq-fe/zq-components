@@ -4,7 +4,7 @@
     <search :fields="data.params" v-model="query" v-if="data.params.length!==0">
       <template slot="button">
         <!-- 默认查询按钮 -->
-        <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" :disabled="disabled" @click="search">查询</el-button>
         <!-- @slot 按钮扩展插槽 -->
         <slot name="search">
         </slot>
@@ -91,6 +91,18 @@
           @current-change="handlePageChange"
       />
     </div>
+     <div v-if="pagination && data.required" class="page-pagination">
+      <el-pagination
+          :page-sizes="pagination.pageSizes"
+          :page-size.sync="pagination.pageSize"
+          :current-page="pagination.page"
+          :total="pagination.total"
+          background
+          layout="total, sizes, prev, pager, next, jumper"
+          @size-change="handleSizeChange"
+          @current-change="handlePageChange"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -164,6 +176,11 @@ export default {
     // 操作 actions： update、delete
     actions() {
       return this.data.actions || {};
+    },
+    disabled() {
+      return this.data.params.some(item => {
+        return item.required && !this.query[item.name]
+      })
     }
   },
   data() {
@@ -188,7 +205,9 @@ export default {
     this.initParams();
   },
   mounted() {
-    !this.data.noSearch && this.doSearch(0);
+    if(!this.data.noSearch) {
+      this.doSearch(0)
+    }
   },
   methods: {
     selectionChange(selection, row){
@@ -277,6 +296,10 @@ export default {
         if(this.data.noSearch) {
           this.dataList = [data]
         } else {
+          this.dataList = data.items || data.Items;
+          this.pagination.total = data.total || data.Total || 0;
+        }
+        if(this.data.required){
           this.dataList = data.items || data.Items;
           this.pagination.total = data.total || data.Total || 0;
         }
