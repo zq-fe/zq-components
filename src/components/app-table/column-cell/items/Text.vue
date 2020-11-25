@@ -26,7 +26,8 @@
       text () {
         const val = this.record[this.column.name];
         const filter = this.column.filter;
-        return val === undefined ?  '-' : (filter ? filter(val, this.record) : val);
+        const result =  val === undefined ?  '-' : (filter ? filter(val, this.record) : val);
+        return result + '';
       }
     }
   }
