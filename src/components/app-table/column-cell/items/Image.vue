@@ -37,7 +37,11 @@ export default {
       if (urls && urls.join) {
         return urls;
       } else if (urls && typeof (urls) === 'string') {
-        return urls.split(',');
+        if (/^https?:\/\/.+/.test(urls)) {
+          return urls.split(',');
+        } else {
+          return []
+        }
       } else  {
         return !!urls ? [urls] : [];
       }
