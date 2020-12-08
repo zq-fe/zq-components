@@ -12,6 +12,29 @@
       valueat="yyyy-MM-dd"
       value-format="yyyy-MM-dd"
       v-bind="fieldItem"
+      @change="dateChange"
+    />
+
+    <el-date-picker
+      v-if="fieldItem.type == 'datetime'"
+      v-model="inputValue"
+      :disabled="fieldItem.disabled"
+      type="datetime"
+      range-separator="至"
+      valueat="yyyy-MM-dd hh:dd:ss"
+      value-format="yyyy-MM-dd hh:dd:ss"
+      v-bind="fieldItem"
+      @change="dateChange"
+    />
+
+    <el-date-picker
+      v-if="fieldItem.type == 'date'"
+      v-model="inputValue"
+      :disabled="fieldItem.disabled"
+      type="date"
+      value-format="yyyy-MM-dd"
+      v-bind="fieldItem"
+      @change="dateChange"
     />
     
     <!-- 下来远程搜索  -->
@@ -50,6 +73,7 @@
       :disabled="fieldItem.disabled"
       :isArray="fieldItem.isArray"
       v-bind="fieldItem"
+      @change="selectChange"
     >
       <el-option
         v-for="item in fieldItem.data"
@@ -411,6 +435,12 @@
           });
         }
       },
+      dateChange(val) {
+        this.$emit("dateChange",val)
+      },
+      selectChange(val){
+        this.$emit("selectChange",val)
+      },
       /**
        * 处理单选
        * @param val
@@ -432,6 +462,7 @@
           ...params,
           [keyWord]: keyValue
         };
+        if(!keyValue) return
         this.loading = true;
         this.request({
           url,
