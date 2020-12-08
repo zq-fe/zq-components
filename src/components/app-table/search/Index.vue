@@ -7,6 +7,8 @@
         v-model="query[field.name]"
         :field="field"
         class="app-form-item"
+        @selectChange="selectChange"
+        @dateChange="dateChange"
     />
     <slot name="formItem" />
     <div class="app-form-button">
@@ -94,6 +96,12 @@
           }
         })
         this.query = { ...this.query, ...urlQuery };
+      },
+      selectChange(val) {
+        this.$emit("selectChange",val)
+      },
+      dateChange(val) {
+        this.$emit("dateChange",val)
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="app-table">
     <!-- 搜索条件 -->
-    <search :fields="data.params" v-model="query" v-if="data.params.length!==0">
+    <search :fields="data.params" v-model="query" v-if="data.params.length!==0" @selectChange="selectChange" @dateChange="dateChange">
       <template slot="button">
         <!-- 默认查询按钮 -->
         <el-button type="primary" icon="el-icon-search" :disabled="disabled" @click="search">查询</el-button>
@@ -254,6 +254,12 @@ export default {
       this.pagination.limit = 20
       this.doSearch(0);
       this.$emit('selected', []);
+    },
+    selectChange(val) {
+      this.search()
+    },
+    dateChange(val) {
+      this.search()
     },
     doSearch(delay = 1000) {
       const config = this.data;
