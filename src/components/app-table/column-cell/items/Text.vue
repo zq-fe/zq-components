@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="textLength < 12" class="cell-text">
-      {{ text | filter(record, column) }}
+      {{ text }}
     </div>
     <el-popover
       v-else
