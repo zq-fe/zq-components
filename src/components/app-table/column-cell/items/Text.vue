@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="textLength < 12" class="cell-text">
+    <div v-if="textLength < 20" class="cell-text">
       {{ text }}
     </div>
     <el-popover
@@ -16,6 +16,7 @@
 
 <script>
   import Mixins from '../mixins';
+  import Vue from 'vue';
   export default {
     name: 'ColumnCellText',
     mixins: [Mixins],
@@ -24,15 +25,16 @@
         return this.text.length;
       },
       text () {
-        const val = this.record[this.column.name];
+        const {record, column} = this;
+        const val = record[column.name];
         const filter = this.column.filter;
+        if (typeof filter === 'string') {
+          const f = Vue.filter(filter);
+          return f ? f(val, record, column) : val;
+        }
         const result =  val === undefined ?  '-' : (filter ? filter(val, this.record) : val);
         return result + '';
       }
     }
   }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
