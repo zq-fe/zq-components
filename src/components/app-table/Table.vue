@@ -20,7 +20,7 @@
         style="width: 100%;margin-top: 9px"
         v-loading="loading"
         ref="table"
-        @select="selectionChange"
+        @selection-change="selectionChange"
     >
       <el-table-column
           v-if="selected"

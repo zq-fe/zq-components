@@ -20,8 +20,8 @@
     </el-form>
     <div class="form-footer" slot="footer">
       <slot name="button" />
-      <el-button type="primary" v-if="showButton" @click="cancelHandler">取消</el-button>
-      <el-button type="primary" v-if="showButton" @click="submitHandler" :loading="loading">提交</el-button>
+      <el-button type="primary" v-if="showCancelBtn.btnShow" @click="cancelHandler">{{showCancelBtn.btnText}}</el-button>
+      <el-button type="primary" v-if="showSubmitBtn.btnShow" @click="submitHandler" :loading="loading">{{showSubmitBtn.btnText}}</el-button>
     </div>
   </el-dialog>
 </template>
@@ -74,16 +74,29 @@ export default {
         return 'form' + Date.now();
       }
     },
-    /**
-     * 是否显示操按钮
+     /**
+     * 是否显示操按
      */
-    showButton: {
-      type: Boolean,
+    showSubmitBtn:{
+      type: Object,
       required: false,
       default() {
-        return true
+        return {
+         btnShow:true,
+          btnText:"提交"
+        }
       }
-    }
+    },
+    showCancelBtn:{
+      type: Object,
+      required: false,
+      default() {
+        return {
+          btnShow:true,
+          btnText:"取消"
+        }
+      }
+    },
   },
   data() {
     return {
@@ -91,6 +104,7 @@ export default {
       loading: false
     }
   },
+  
   computed: {
     query: {
       set(params) {
@@ -122,7 +136,8 @@ export default {
       return rules;
     },
     showForm: {
-      get() {
+      get() { 
+        console.log(1)
         return this.show;
       },
       set(val) {
